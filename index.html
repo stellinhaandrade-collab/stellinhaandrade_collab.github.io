@@ -1,13 +1,3 @@
-O problema de legibilidade ocorria porque, em telas de resolução intermediária (laptops e monitores menores), o texto centralizado se expandia horizontalmente e acabava sobrepondo as coordenadas fixas dos quadrados.
-
-Para resolver isso de forma definitiva e garantir **100% de legibilidade**, fiz duas alterações fundamentais na estrutura da grade:
-
-1. **Deslocamento Lateral:** Movi os quadrados ainda mais para a direita (começando a partir de `960px`), criando uma composição abstrata bem lateral.
-2. **Ocultação Responsiva Inteligente (`@media`):** Adicionei uma regra CSS para que esses quadrados coloridos fiquem ocultos automaticamente se a tela do usuário for menor que `1360px`. Assim, em tablets, celulares ou notebooks menores, eles desaparecem completamente para dar prioridade total à leitura do título, aparecendo apenas como um elemento decorativo em monitores grandes onde há espaço de sobra na lateral direita.
-
-Aqui está o código completo corrigido:
-
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
