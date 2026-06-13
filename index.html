@@ -276,7 +276,6 @@ footer span{
 
 /* ─── RESPONSIVE MASTER ─── */
 @media(max-width:768px){
-  /* Ajuste na navegação mobile para manter tudo visível e limpo em uma linha */
   nav         {padding:0 16px; height:54px;}
   .brand      {font-size:14px; letter-spacing:0;}
   .nav-links  {display:flex !important; gap:12px;}
@@ -305,17 +304,19 @@ footer span{
     max-height: 65vh;
   }
 
-  /* Distribuição paramétrica sutil e espaçada dos quadrados nas bordas laterais do mobile */
+  /* Distribuição sutil dos blocos respeitando rigorosamente o tamanho do grid de 60px */
   .quadrado-decorativo {
-    display: block !important;
-    width: 40px !important;
-    height: 40px !important;
-    opacity: 0.6; /* Transparência sutil para não interferir na leitura */
+    display: none !important; /* Oculta os excessos para manter a leveza visual */
+    width: 60px !important;
+    height: 60px !important;
+    opacity: 0.5;
   }
-  .q1 { top: 120px !important; left: auto !important; right: 0 !important; }
-  .q2 { top: 260px !important; left: 0 !important; right: auto !important; }
-  .q3 { top: 440px !important; left: auto !important; right: 40px !important; }
-  .q4 { top: 620px !important; left: 40px !important; right: auto !important; }
+  /* Exibe e posiciona q1 a q4 em múltiplos exatos de 60px usando 'left' (garantindo o alinhamento magnético com a malha) */
+  .q1, .q2, .q3, .q4 { display: block !important; }
+  .q1 { top: 120px !important; left: 180px !important; right: auto !important; }
+  .q2 { top: 300px !important; left: 0px !important; right: auto !important; }
+  .q3 { top: 480px !important; left: 120px !important; right: auto !important; }
+  .q4 { top: 660px !important; left: 60px !important; right: auto !important; }
 }
 </style>
 </head>
@@ -388,7 +389,9 @@ const C = {
     <p class="hero-sub" id="j-sub"></p>
     <div class="tags"   id="j-tags"></div>
     <div class="hero-ctas">
-      <button class="btn-dk" onclick="go('video')">▶ Assistir ao tutorial</button>
+      <button class="btn-dk" onclick="go('video')">
+        <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor; margin-right:8px; display:inline-block; vertical-align:-2px;"><path d="M8 5v14l11-7z"/></svg>Assistir ao tutorial
+      </button>
       <button class="btn-ol" onclick="go('banner')">↓ Acessar banner</button>
     </div>
     <div class="hero-meta" id="j-meta"></div>
@@ -542,3 +545,4 @@ const obs = new IntersectionObserver(entries => {
 </script>
 </body>
 </html>
+
