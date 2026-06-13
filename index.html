@@ -113,9 +113,10 @@ section{padding:100px 48px;}
 .hero-inner h1{
   font-family:Helvetica, Arial, sans-serif;
   font-weight:700;
-  font-size:clamp(26px,3.8vw,42px); /* Tamanho ligeiramente reduzido para melhor leitura */
+  font-size:clamp(26px,3.8vw,42px);
   line-height:1.15;letter-spacing:-.01em;
   color:var(--dk);max-width:780px;margin-bottom:26px;
+  text-align: justify; /* Texto do título justificado conforme solicitado */
 }
 .hero-sub{
   font-size:18px;font-weight:300;line-height:1.75;
@@ -216,8 +217,7 @@ section{padding:100px 48px;}
   font-family:Helvetica, Arial, sans-serif;font-size:12px;
   color:var(--green);margin-bottom:20px;letter-spacing:.03em;
 }
-.autor-bio{font-size:15px;color:#B8B8A8;line-height:1.8;margin-bottom:28px;text-align:justify;}
-.autor-ctas{display:flex;gap:12px;flex-wrap:wrap;}
+.autor-bio{font-size:15px;color:#B8B8A8;line-height:1.8;margin-bottom:12px;text-align:justify;}
 
 /* ─── FOOTER ─── */
 footer{
@@ -265,13 +265,11 @@ const C = {
   linkBanner:  "A1%20STELLA%20FINAL%20CERTO.pdf", 
 
   /* ── Contato ── */
-  email:       "voce@email.com",
-  linkedin:    "#",
+  email:       "stella.andradepc@gmail.com",
 
-  /* ── Sobre o trabalho ── cada string = um parágrafo ── */
+  /* ── Sobre o trabalho ── texto atualizado conforme solicitado ── */
   resumo: [
-    "Descreva aqui o tema central do seu TCC: o problema investigado, a abordagem metodológica adotada e a contribuição esperada para o campo.",
-    "Utilize dois ou três parágrafos para contextualizar o leitor sobre os objetivos, o método e os principais resultados obtidos."
+    "Neste vídeo tutorial, é apresentado o passo a passo para a elaboração de estudos preliminares de Instituições de Longa Permanência para Idosos (ILPIs) por meio do script em Grasshopper desenvolvido neste Trabalho de Conclusão de Curso."
   ],
 
   /* ── Bio ── */
@@ -386,10 +384,10 @@ const C = {
         <h2 id="j-autor-nome"></h2>
         <p class="autor-role" id="j-autor-role"></p>
         <p class="autor-bio"  id="j-autor-bio"></p>
-        <div class="autor-ctas">
-          <a id="j-email"    class="btn-g">E-mail</a>
-          <a id="j-linkedin" class="btn-ol-lt">LinkedIn</a>
-        </div>
+        <p style="color:#B8B8A8; font-size:14px; margin-top:20px;">
+          Caso queira contactar o autor, envie um e-mail para: 
+          <a id="j-email" style="color:var(--green); font-weight:500; text-decoration:underline;"></a>
+        </p>
       </div>
     </div>
   </div>
@@ -449,8 +447,12 @@ C.resumo.forEach(txt => {
 el('j-autor-nome').textContent = C.autor;
 el('j-autor-role').textContent = `${C.curso} — ${C.instituicao}`;
 el('j-autor-bio').textContent  = C.bio;
-el('j-email').href             = `mailto:${C.email}`;
-el('j-linkedin').href          = C.linkedin;
+
+/* Configuração do link de e-mail atualizado */
+if(el('j-email')) {
+  el('j-email').href = `mailto:${C.email}`;
+  el('j-email').textContent = C.email;
+}
 
 /* footer */
 el('j-foot-l').textContent = `© ${C.ano} ${C.autor}`;
@@ -474,6 +476,3 @@ const obs = new IntersectionObserver(entries => {
 </script>
 </body>
 </html>
-
-
-
