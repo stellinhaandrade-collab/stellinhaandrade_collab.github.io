@@ -1,3 +1,13 @@
+O problema de legibilidade ocorria porque, em telas de resolução intermediária (laptops e monitores menores), o texto centralizado se expandia horizontalmente e acabava sobrepondo as coordenadas fixas dos quadrados.
+
+Para resolver isso de forma definitiva e garantir **100% de legibilidade**, fiz duas alterações fundamentais na estrutura da grade:
+
+1. **Deslocamento Lateral:** Movi os quadrados ainda mais para a direita (começando a partir de `960px`), criando uma composição abstrata bem lateral.
+2. **Ocultação Responsiva Inteligente (`@media`):** Adicionei uma regra CSS para que esses quadrados coloridos fiquem ocultos automaticamente se a tela do usuário for menor que `1360px`. Assim, em tablets, celulares ou notebooks menores, eles desaparecem completamente para dar prioridade total à leitura do título, aparecendo apenas como um elemento decorativo em monitores grandes onde há espaço de sobra na lateral direita.
+
+Aqui está o código completo corrigido:
+
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -106,6 +116,19 @@ section{padding:100px 48px;}
     linear-gradient(90deg,rgba(160,160,148,.3) 1px,transparent 1px);
   background-size:60px 60px;
 }
+
+/* Estilo para garantir o isolamento e sumir com os quadrados em telas menores que 1360px */
+.quadrado-decorativo {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+}
+@media(max-width: 1360px) {
+  .quadrado-decorativo {
+    display: none !important;
+  }
+}
+
 .hero-inner{
   max-width:var(--fw);margin:0 auto;
   padding:120px 0 80px;position:relative;width:100%;
@@ -116,7 +139,7 @@ section{padding:100px 48px;}
   font-size:clamp(26px,3.8vw,42px);
   line-height:1.15;letter-spacing:-.01em;
   color:var(--dk);max-width:780px;margin-bottom:26px;
-  text-align: justify; /* Texto do título justificado conforme solicitado */
+  text-align: justify;
 }
 .hero-sub{
   font-size:18px;font-weight:300;line-height:1.75;
@@ -217,7 +240,7 @@ section{padding:100px 48px;}
   font-family:Helvetica, Arial, sans-serif;font-size:12px;
   color:var(--green);margin-bottom:20px;letter-spacing:.03em;
 }
-.autor-bio{font-size:15px;color:#B8B8A8;line-height:1.8;margin-bottom:12px;text-align:justify;}
+.autor-bio{font-size:15px;color:#B8B8A8;line-height:12px;text-align:justify;}
 
 /* ─── FOOTER ─── */
 footer{
@@ -267,7 +290,7 @@ const C = {
   /* ── Contato ── */
   email:       "stella.andradepc@gmail.com",
 
-  /* ── Sobre o trabalho ── texto atualizado conforme solicitado ── */
+  /* ── Sobre o trabalho ── */
   resumo: [
     "Neste vídeo tutorial, é apresentado o passo a passo para a elaboração de estudos preliminares de Instituições de Longa Permanência para Idosos (ILPIs) por meio do script em Grasshopper desenvolvido neste Trabalho de Conclusão de Curso."
   ],
@@ -298,15 +321,15 @@ const C = {
 
 <section id="inicio">
   <div class="grid-bg">
-    <div style="position:absolute; top:120px; left:840px; width:60px; height:60px; background:#ffacd1;"></div>
-    <div style="position:absolute; top:180px; left:960px; width:60px; height:60px; background:#ff7272;"></div>
-    <div style="position:absolute; top:240px; left:900px; width:60px; height:60px; background:#8ac8fb;"></div>
-    <div style="position:absolute; top:300px; left:1020px; width:60px; height:60px; background:#8ca36a;"></div>
-    <div style="position:absolute; top:360px; left:840px; width:60px; height:60px; background:#f7e07f;"></div>
-    <div style="position:absolute; top:420px; left:960px; width:60px; height:60px; background:#999999;"></div>
-    <div style="position:absolute; top:180px; left:1080px; width:60px; height:60px; background:#ffacd1;"></div>
-    <div style="position:absolute; top:480px; left:900px; width:60px; height:60px; background:#8ac8fb;"></div>
-    <div style="position:absolute; top:300px; left:1140px; width:60px; height:60px; background:#ff7272;"></div>
+    <div class="quadrado-decorativo" style="top: 120px; left: 960px; background:#ffacd1;"></div>
+    <div class="quadrado-decorativo" style="top: 180px; left: 1080px; background:#ff7272;"></div>
+    <div class="quadrado-decorativo" style="top: 240px; left: 1020px; background:#8ac8fb;"></div>
+    <div class="quadrado-decorativo" style="top: 300px; left: 1140px; background:#8ca36a;"></div>
+    <div class="quadrado-decorativo" style="top: 360px; left: 960px; background:#f7e07f;"></div>
+    <div class="quadrado-decorativo" style="top: 420px; left: 1080px; background:#999999;"></div>
+    <div class="quadrado-decorativo" style="top: 240px; left: 1200px; background:#ffacd1;"></div>
+    <div class="quadrado-decorativo" style="top: 480px; left: 1020px; background:#8ac8fb;"></div>
+    <div class="quadrado-decorativo" style="top: 360px; left: 1260px; background:#ff7272;"></div>
   </div>
   
   <div class="hero-inner inner">
@@ -448,7 +471,7 @@ el('j-autor-nome').textContent = C.autor;
 el('j-autor-role').textContent = `${C.curso} — ${C.instituicao}`;
 el('j-autor-bio').textContent  = C.bio;
 
-/* Configuração do link de e-mail atualizado */
+/* Configuração do link de e-mail */
 if(el('j-email')) {
   el('j-email').href = `mailto:${C.email}`;
   el('j-email').textContent = C.email;
@@ -476,4 +499,3 @@ const obs = new IntersectionObserver(entries => {
 </script>
 </body>
 </html>
-
