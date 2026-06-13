@@ -114,24 +114,24 @@ section{padding:100px 48px;}
   opacity: 0.8;
 }
 
-/* ── CLUSTERS DE QUADRADOS (Mapeamento Web Periférico) ── */
-/* Cluster 1: Zonificação Superior */
-.q1 { top: 60px; left: 960px; background:#8ac8fb; }
-.q2 { top: 60px; left: 1020px; background:#8ac8fb; }
-.q3 { top: 120px; left: 1020px; background:#8ca36a; }
-.q4 { top: 120px; left: 1080px; background:#ff7272; }
+/* ── CLUSTERS ASSIMÉTRICOS E ALEATÓRIOS (WEB) ── */
+/* Cluster 1: Formato Escalonado Diagonal */
+.q1 { top: 60px;  left: 960px;  background:#8ac8fb; }
+.q2 { top: 120px; left: 960px;  background:#8ca36a; }
+.q3 { top: 120px; left: 1020px; background:#ff7272; }
+.q4 { top: 180px; left: 1020px; background:#f7e07f; }
 
-/* Cluster 2: Zonificação Intermediária */
-.q5 { top: 240px; left: 900px; background:#999999; }
-.q6 { top: 240px; left: 960px; background:#8ca36a; }
-.q7 { top: 300px; left: 960px; background:#f7e07f; }
-.q8 { top: 300px; left: 1020px; background:#ffacd1; }
+/* Cluster 2: Formato Assíncrono Deslocado */
+.q5 { top: 240px; left: 900px;  background:#999999; }
+.q6 { top: 300px; left: 900px;  background:#ffacd1; }
+.q7 { top: 300px; left: 960px;  background:#8ac8fb; }
+.q8 { top: 360px; left: 960px;  background:#ffacd1; }
 
-/* Cluster 3: Zonificação Inferior */
-.q9  { top: 480px; left: 960px; background:#ffacd1; }
-.q10 { top: 480px; left: 1020px; background:#8ac8fb; }
-.q11 { top: 540px; left: 1020px; background:#ff7272; }
-.q12 { top: 540px; left: 1080px; background:#f7e07f; }
+/* Cluster 3: Formato Massa Compacta em "L" */
+.q9  { top: 480px; left: 1020px; background:#8ca36a; }
+.q10 { top: 540px; left: 1020px; background:#ff7272; }
+.q11 { top: 540px; left: 1080px; background:#f7e07f; }
+.q12 { top: 600px; left: 1080px; background:#8ac8fb; }
 
 
 .hero-inner{
@@ -297,7 +297,6 @@ footer span{
   .nav-links  {display:flex !important; gap:12px;}
   .nav-links a{font-size:11px; letter-spacing:0;}
 
-  /* Remove o fundo de grade no mobile conforme solicitado */
   .grid-bg    {background-image: none !important;}
 
   #inicio     {padding:0 16px;}
@@ -323,10 +322,9 @@ footer span{
     max-height: 65vh;
   }
 
-  /* Organização Responsiva Mobile:
-     Exibe apenas um mini-cluster condensado (4 blocos contíguos),
-     posicionado profundamente no canto inferior direito com opacidade sutil (0.3).
-     O restante dos clusters maiores é ocultado para preservar os textos.
+  /* Configuração Mobile Orgânica e Escalonada:
+    Apenas 4 blocos ativos na quina inferior direita, organizados de forma 
+    assimétrica (estilo escada contígua) e com opacidade super leve (0.3).
   */
   .quadrado-decorativo {
     display: none !important;
@@ -337,10 +335,10 @@ footer span{
     top: auto !important;
   }
   .q1, .q2, .q3, .q4 { display: block !important; }
-  .q1 { bottom: 60px !important; right: 60px !important; }
-  .q2 { bottom: 60px !important; right: 20px !important; }
-  .q3 { bottom: 20px !important; right: 60px !important; }
-  .q4 { bottom: 20px !important; right: 20px !important; }
+  .q1 { bottom: 20px !important; right: 20px !important; }
+  .q2 { bottom: 20px !important; right: 60px !important; }
+  .q3 { bottom: 60px !important; right: 60px !important; }
+  .q4 { bottom: 60px !important; right: 100px !important; }
 }
 </style>
 </head>
