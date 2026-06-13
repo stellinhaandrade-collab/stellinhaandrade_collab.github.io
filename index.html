@@ -276,13 +276,17 @@ footer span{
 
 /* ─── RESPONSIVE MASTER ─── */
 @media(max-width:768px){
-  nav         {padding:0 24px;}
-  .nav-links  {display:none;}
-  #inicio     {padding:0 24px;}
-  section     {padding:60px 24px;}
-  #video      {padding:60px 24px;}
-  #autor      {padding:60px 24px;}
-  footer      {padding:20px 24px;}
+  /* Ajuste na navegação mobile para manter tudo visível e limpo em uma linha */
+  nav         {padding:0 16px; height:54px;}
+  .brand      {font-size:14px; letter-spacing:0;}
+  .nav-links  {display:flex !important; gap:12px;}
+  .nav-links a{font-size:11px; letter-spacing:0;}
+
+  #inicio     {padding:0 16px;}
+  section     {padding:60px 16px;}
+  #video      {padding:60px 16px;}
+  #autor      {padding:60px 16px;}
+  footer      {padding:20px 16px;}
   .sobre-grid ,
   .autor-grid {grid-template-columns:1fr;gap:32px;}
   .hero-meta  {display:none;}
@@ -301,18 +305,17 @@ footer span{
     max-height: 65vh;
   }
 
-  /* Reativação e Ajuste Fino dos Quadrados no Mobile */
-  .q1, .q2, .q3, .q4 {
+  /* Distribuição paramétrica sutil e espaçada dos quadrados nas bordas laterais do mobile */
+  .quadrado-decorativo {
     display: block !important;
-    width: 25px !important;
-    height: 25px !important;
-    left: auto !important;
+    width: 40px !important;
+    height: 40px !important;
+    opacity: 0.6; /* Transparência sutil para não interferir na leitura */
   }
-  /* Monta um mosaico limpo 2x2 no canto superior direito sem cruzar com as escritas */
-  .q1 { top: 75px !important;  right: 24px !important; }
-  .q2 { top: 75px !important;  right: 54px !important; }
-  .q3 { top: 105px !important; right: 24px !important; }
-  .q4 { top: 105px !important; right: 54px !important; }
+  .q1 { top: 120px !important; left: auto !important; right: 0 !important; }
+  .q2 { top: 260px !important; left: 0 !important; right: auto !important; }
+  .q3 { top: 440px !important; left: auto !important; right: 40px !important; }
+  .q4 { top: 620px !important; left: 40px !important; right: auto !important; }
 }
 </style>
 </head>
@@ -342,7 +345,7 @@ const C = {
   ],
 
   /* ── Bio ── */
-  bio: "Graduanda em Arquitetura e Urbanismo pela Universidade Federal de Minas Gerais (UFMG), desenvolveu sua trajetória acadêmica com interesse em projeto arquitetônico, design computacional paramétrico e aplicação de tecnologias digitais ao processo de projeto. Ao longo da graduação, buscou aprofundar conhecimentos em modelagem tridimensional, visualização arquitetônica e metodologias computacionais voltadas ao apoio à tomada de decisão. A escolha do tema deste trabalho surgiu do interesse ininvestigar como ferramentas paramétricas e inteligência artificial podem contribuir para a concepção de ambientes mais inclusivos e adaptáveis, especialmente diante do envelhecimento da população e da crescente demanda por espaços que promovam qualidade de vida, acessibilidade e bem-estar para pessoas idosas.",
+  bio: "Graduanda em Arquitetura e Urbanismo pela Universidade Federal de Minas Gerais (UFMG), desenvolveu sua trajetória acadêmica com interesse em projeto arquitetônico, design computacional paramétrico e aplicação de tecnologias digitais ao processo de projeto. Ao longo da graduação, buscou aprofundar conhecimentos em modelagem tridimensional, visualização arquitetônica e metodologias computacionais voltadas ao apoio à tomada de decisão. A escolha do tema deste trabalho surgiu do interesse em investigar como ferramentas paramétricas e inteligência artificial podem contribuir para a concepção de ambientes mais inclusivos e adaptáveis, especialmente diante do envelhecimento da população e da crescente demanda por espaços que promovam qualidade de vida, acessibilidade e bem-estar para pessoas idosas.",
 
   /* ── Capítulos do tutorial ── */
   capitulos: [
