@@ -187,30 +187,6 @@ section{padding:100px 48px;}
 }
 #sobre p{font-size:16px;line-height:1.85;color:var(--muted);margin-bottom:16px;text-align:justify;}
 
-/* ─── CAPÍTULOS ─── */
-#capitulos{background:var(--bg);}
-#capitulos h2{
-  font-family:Helvetica, Arial, sans-serif;font-weight:300;
-  font-size:clamp(30px,4vw,44px);
-  color:var(--dk);margin-bottom:44px;margin-top:14px;
-}
-.cap-list{display:flex;flex-direction:column;gap:10px;}
-.cap-card{
-  border:1px solid var(--border);background:#FFF;
-  display:grid;grid-template-columns:36px 1fr 68px;
-  gap:20px;align-items:center;
-  padding:22px 26px;
-  transition:border-color .2s,box-shadow .2s;
-}
-.cap-card:hover{
-  border-color:var(--green);
-  box-shadow:0 2px 14px rgba(102,102,102,.1);
-}
-.cap-n    {font-family:Helvetica, Arial, sans-serif;font-size:11px;color:var(--gl);font-weight:700;letter-spacing:.05em;}
-.cap-title{font-size:15px;font-weight:500;color:var(--dk);margin-bottom:4px;}
-.cap-desc {font-size:13px;color:var(--dim);line-height:1.5;}
-.cap-dur  {font-family:Helvetica, Arial, sans-serif;font-size:12px;color:#AAAAAA;text-align:right;white-space:nowrap;}
-
 /* ─── BANNER CONFIGS RESPONSIVAS ─── */
 .banner-object {
   width: 100%;
@@ -324,14 +300,14 @@ const C = {
   orientador:  "Rejane Magiag Loura",
 
   /* ── Vídeo ── cole aqui só o ID do YouTube (parte após ?v=) */
-  youtubeId:   "1yruQ700Teg",          /* ex: "dQw4w9WgXcQ" */
+  youtubeId:   null,          /* ex: "dQw4w9WgXcQ" */
   linkTCC:     "#",
   linkBanner:  "A1%20STELLA%20FINAL%20CERTO.pdf", 
 
   /* ── Contato ── */
   email:       "stella.andradepc@gmail.com",
 
-  /* ── Sobre o trabalho ── */
+  /* ── Sobre o tutoriak ── */
   resumo: [
     "Neste vídeo tutorial, é apresentado o passo a passo para a elaboração de estudos preliminares de Instituições de Longa Permanência para Idosos (ILPIs) por meio do script em Grasshopper desenvolvido neste Trabalho de Conclusão de Curso."
   ],
