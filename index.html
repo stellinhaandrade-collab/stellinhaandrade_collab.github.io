@@ -107,7 +107,6 @@ section{padding:100px 48px;}
   background-size:60px 60px;
 }
 
-/* Configuração base dos quadrados para a WEB */
 .quadrado-decorativo {
   position: absolute;
   width: 60px;
@@ -115,20 +114,24 @@ section{padding:100px 48px;}
   opacity: 0.8;
 }
 
-/* Agrupamento Contíguo (Estilo "Planta de Setorização").
-  Coordenadas mapeadas para formar um bloco unido na direita. 
-*/
-.q1 { top: 120px; left: 960px; background:#8ac8fb; }  /* Azul */
-.q2 { top: 120px; left: 1020px; background:#8ac8fb; } /* Azul */
-.q3 { top: 120px; left: 1080px; background:#ff7272; } /* Vermelho */
+/* ── CLUSTERS DE QUADRADOS (Mapeamento Web Periférico) ── */
+/* Cluster 1: Zonificação Superior */
+.q1 { top: 60px; left: 960px; background:#8ac8fb; }
+.q2 { top: 60px; left: 1020px; background:#8ac8fb; }
+.q3 { top: 120px; left: 1020px; background:#8ca36a; }
+.q4 { top: 120px; left: 1080px; background:#ff7272; }
 
-.q4 { top: 180px; left: 900px; background:#999999; }  /* Cinza */
-.q5 { top: 180px; left: 960px; background:#8ca36a; }  /* Verde */
-.q6 { top: 180px; left: 1020px; background:#8ca36a; } /* Verde */
-.q7 { top: 180px; left: 1080px; background:#f7e07f; } /* Amarelo */
+/* Cluster 2: Zonificação Intermediária */
+.q5 { top: 240px; left: 900px; background:#999999; }
+.q6 { top: 240px; left: 960px; background:#8ca36a; }
+.q7 { top: 300px; left: 960px; background:#f7e07f; }
+.q8 { top: 300px; left: 1020px; background:#ffacd1; }
 
-.q8 { top: 240px; left: 960px; background:#ffacd1; }  /* Rosa */
-.q9 { top: 240px; left: 1020px; background:#ffacd1; } /* Rosa */
+/* Cluster 3: Zonificação Inferior */
+.q9  { top: 480px; left: 960px; background:#ffacd1; }
+.q10 { top: 480px; left: 1020px; background:#8ac8fb; }
+.q11 { top: 540px; left: 1020px; background:#ff7272; }
+.q12 { top: 540px; left: 1080px; background:#f7e07f; }
 
 
 .hero-inner{
@@ -294,7 +297,7 @@ footer span{
   .nav-links  {display:flex !important; gap:12px;}
   .nav-links a{font-size:11px; letter-spacing:0;}
 
-  /* Remove o fundo de grade no mobile para manter visual super limpo */
+  /* Remove o fundo de grade no mobile conforme solicitado */
   .grid-bg    {background-image: none !important;}
 
   #inicio     {padding:0 16px;}
@@ -320,33 +323,24 @@ footer span{
     max-height: 65vh;
   }
 
-  /* Bloco Contíguo Redimensionado para o Mobile.
-    Todos os 9 elementos aparecem unidos formando a mesma geometria do desktop.
-    Ficam ancorados no canto inferior (bottom) e direito (right), com bastante transparência.
+  /* Organização Responsiva Mobile:
+     Exibe apenas um mini-cluster condensado (4 blocos contíguos),
+     posicionado profundamente no canto inferior direito com opacidade sutil (0.3).
+     O restante dos clusters maiores é ocultado para preservar os textos.
   */
   .quadrado-decorativo {
-    display: block !important;
-    width: 40px !important;  /* Menores para o mobile */
+    display: none !important;
+    width: 40px !important;
     height: 40px !important;
-    opacity: 0.3 !important; /* Mais transparentes para não interferir na leitura */
-    top: auto !important;
+    opacity: 0.3 !important; 
     left: auto !important;
+    top: auto !important;
   }
-
-  /* Linha 1 do bloco (Mais ao alto) */
-  .q1 { bottom: 100px !important; right: 140px !important; }
-  .q2 { bottom: 100px !important; right: 100px !important; }
-  .q3 { bottom: 100px !important; right: 60px !important; }
-
-  /* Linha 2 do bloco (Meio) */
-  .q4 { bottom: 60px !important; right: 180px !important; }
-  .q5 { bottom: 60px !important; right: 140px !important; }
-  .q6 { bottom: 60px !important; right: 100px !important; }
-  .q7 { bottom: 60px !important; right: 60px !important; }
-
-  /* Linha 3 do bloco (Base) */
-  .q8 { bottom: 20px !important; right: 140px !important; }
-  .q9 { bottom: 20px !important; right: 100px !important; }
+  .q1, .q2, .q3, .q4 { display: block !important; }
+  .q1 { bottom: 60px !important; right: 60px !important; }
+  .q2 { bottom: 60px !important; right: 20px !important; }
+  .q3 { bottom: 20px !important; right: 60px !important; }
+  .q4 { bottom: 20px !important; right: 20px !important; }
 }
 </style>
 </head>
@@ -411,6 +405,9 @@ const C = {
     <div class="quadrado-decorativo q7"></div>
     <div class="quadrado-decorativo q8"></div>
     <div class="quadrado-decorativo q9"></div>
+    <div class="quadrado-decorativo q10"></div>
+    <div class="quadrado-decorativo q11"></div>
+    <div class="quadrado-decorativo q12"></div>
   </div>
   
   <div class="hero-inner inner">
