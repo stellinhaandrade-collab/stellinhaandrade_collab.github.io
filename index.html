@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TCC — Carregando…</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+a{text-decoration:none;}
+img{max-width:100%;display:block;}
+
+/* ─── TOKENS ─── */
+:root{
+  --bg:     #F8F8F5;
+  --bg-mid: #F0F0EC;
+  --dk:     #1C2B1A;
+  --dkr:    #0F1A0E;
+  --green:  #5C8F50;
+  --gl:     #B5D4AE;
+  --gm:     #2D4A2A;
+  --text:   #1C1C1C;
+  --muted:  #5A5A5A;
+  --dim:    #888;
+  --border: #E0E0D8;
+  --fw:     960px;
+}
+
+/* ─── BASE ─── */
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:16px;line-height:1.6;
+  color:var(--text);background:var(--bg);
+  overflow-x:hidden;
+}
+.display{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;}
+.mono   {font-family:'Space Mono',monospace;}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(248,248,245,.94);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 48px;height:58px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.brand{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:18px;font-weight:300;letter-spacing:.02em;
+  color:var(--text);cursor:pointer;
+  background:none;border:none;
+}
+.brand span{color:var(--green);}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{
+  font-size:13px;color:var(--muted);letter-spacing:.03em;
+  transition:color .2s;
+}
+.nav-links a:hover,.nav-links a.act{color:var(--green);}
+
+/* ─── LABELS ─── */
+.label,.label-lt{
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;
+}
+.label   {color:var(--green);}
+.label-lt{color:var(--gl);}
+.label::before,.label-lt::before{
+  content:'///';font-size:11px;color:var(--gl);
+}
+
+/* ─── BUTTONS ─── */
+.btn-dk,.btn-ol,.btn-g,.btn-ol-lt{
+  display:inline-block;
+  font-family:'Inter',sans-serif;
+  font-size:14px;font-weight:500;letter-spacing:.02em;
+  cursor:pointer;border:none;
+  transition:background .2s,color .2s;
+}
+.btn-dk    {background:var(--dk);color:var(--bg);padding:13px 28px;}
+.btn-dk:hover{background:#2D4A2A;}
+.btn-ol    {background:transparent;color:var(--dk);border:1.5px solid var(--dk);padding:11px 24px;}
+.btn-ol:hover{background:var(--dk);color:var(--bg);}
+.btn-g     {background:var(--green);color:var(--bg);padding:13px 28px;}
+.btn-g:hover{background:#4A7A40;}
+.btn-ol-lt {background:transparent;color:var(--bg);border:1.5px solid var(--green);padding:11px 24px;}
+.btn-ol-lt:hover{background:rgba(92,143,80,.15);}
+
+/* ─── SHARED ─── */
+.inner{max-width:var(--fw);margin:0 auto;}
+section{padding:100px 48px;}
+
+/* ─── HERO ─── */
+#inicio{
+  min-height:100vh;padding:0 48px;
+  display:flex;align-items:center;
+  position:relative;overflow:hidden;
+}
+.grid-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(160,160,148,.3) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(160,160,148,.3) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.hero-inner{
+  max-width:var(--fw);margin:0 auto;
+  padding:120px 0 80px;position:relative;width:100%;
+}
+.hero-inner h1{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:300;
+  font-size:clamp(36px,6vw,68px);
+  line-height:1.06;letter-spacing:-.01em;
+  color:var(--dk);max-width:780px;margin-bottom:26px;
+}
+.hero-sub{
+  font-size:18px;font-weight:300;line-height:1.75;
+  color:var(--muted);max-width:520px;margin-bottom:20px;
+}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:48px;}
+.tags span{
+  background:#E4EEE3;color:#2A4A28;
+  font-size:11px;font-weight:500;
+  padding:5px 12px;letter-spacing:.04em;
+}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
+.hero-meta{
+  position:absolute;right:0;bottom:0;
+  font-family:'Space Mono',monospace;font-size:11px;
+  color:#AAAAAA;line-height:2.2;text-align:right;
+}
+
+/* ─── VIDEO ─── */
+#video{background:var(--dk);padding:80px 48px;}
+#video h2{
+  font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
+  font-size:clamp(26px,3.5vw,40px);
+  color:var(--bg);margin-bottom:36px;letter-spacing:.01em;
+  margin-top:14px;
+}
+.video-wrap{position:relative;padding-top:56.25%;}
+.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+.video-ph{
+  aspect-ratio:16/9;background:#172415;
+  border:1px dashed #3A5A38;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.ph-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(92,143,80,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(92,143,80,.07) 1px,transparent 1px);
+  background-size:48px 48px;
+}
+.ph-inner{position:relative;z-index:1;text-align:center;padding:24px;}
+.ph-play{font-size:44px;color:var(--green);margin-bottom:14px;}
+.ph-inner p{font-family:'Space Mono',monospace;font-size:12px;color:var(--gl);}
+.ph-hint{font-size:12px;color:#5C8A58;margin-top:8px;font-family:'Inter',sans-serif;}
+
+/* ─── SOBRE ─── */
+#sobre{background:var(--bg-mid);}
+.sobre-grid{display:grid;grid-template-columns:200px 1fr;gap:60px;align-items:start;}
+.sobre-rule{width:36px;height:2px;background:var(--green);margin-top:18px;}
+#sobre h2{
+  font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
+  font-size:clamp(26px,3vw,36px);
+  color:var(--dk);line-height:1.2;margin-bottom:24px;
+}
+#sobre p{font-size:16px;line-height:1.85;color:var(--muted);margin-bottom:16px;}
+
+/* ─── CAPÍTULOS ─── */
+#capitulos{background:var(--bg);}
+#capitulos h2{
+  font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
+  font-size:clamp(30px,4vw,44px);
+  color:var(--dk);margin-bottom:44px;margin-top:14px;
+}
+.cap-list{display:flex;flex-direction:column;gap:10px;}
+.cap-card{
+  border:1px solid var(--border);background:#FFF;
+  display:grid;grid-template-columns:36px 1fr 68px;
+  gap:20px;align-items:center;
+  padding:22px 26px;
+  transition:border-color .2s,box-shadow .2s;
+}
+.cap-card:hover{
+  border-color:var(--green);
+  box-shadow:0 2px 14px rgba(92,143,80,.1);
+}
+.cap-n    {font-family:'Space Mono',monospace;font-size:11px;color:var(--gl);font-weight:700;letter-spacing:.05em;}
+.cap-title{font-size:15px;font-weight:500;color:var(--dk);margin-bottom:4px;}
+.cap-desc {font-size:13px;color:var(--dim);line-height:1.5;}
+.cap-dur  {font-family:'Space Mono',monospace;font-size:12px;color:#AAAAAA;text-align:right;white-space:nowrap;}
+
+/* ─── AUTOR ─── */
+#autor{background:var(--dk);padding:100px 48px;}
+.autor-grid{display:grid;grid-template-columns:160px 1fr;gap:56px;align-items:center;}
+.avatar{
+  width:140px;height:140px;border-radius:50%;
+  background:var(--gm);border:2px solid var(--green);
+  display:flex;align-items:center;justify-content:center;
+  font-size:52px;flex-shrink:0;
+}
+#autor h2{
+  font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
+  font-size:clamp(26px,3.5vw,40px);
+  color:var(--bg);margin-bottom:8px;margin-top:14px;
+}
+.autor-role{
+  font-family:'Space Mono',monospace;font-size:12px;
+  color:var(--green);margin-bottom:20px;letter-spacing:.03em;
+}
+.autor-bio{font-size:15px;color:#B8B8A8;line-height:1.8;margin-bottom:28px;}
+.autor-ctas{display:flex;gap:12px;flex-wrap:wrap;}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--dkr);
+  padding:26px 48px;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+}
+footer span{
+  font-family:'Space Mono',monospace;
+  font-size:10px;color:#3A5A38;letter-spacing:.08em;
+}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:768px){
+  nav         {padding:0 24px;}
+  .nav-links  {display:none;}
+  #inicio     {padding:0 24px;}
+  section     {padding:60px 24px;}
+  #video      {padding:60px 24px;}
+  #autor      {padding:60px 24px;}
+  footer      {padding:20px 24px;}
+  .sobre-grid ,
+  .autor-grid {grid-template-columns:1fr;gap:32px;}
+  .hero-meta  {display:none;}
+  .cap-card   {grid-template-columns:32px 1fr;gap:14px;}
+  .cap-dur    {display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════
+     ⚙  CONFIGURAÇÃO — edite somente este bloco
+════════════════════════════════════════════════════ -->
+<script>
+const C = {
+  titulo:      "Título do Seu TCC",
+  subtitulo:   "Uma linha que resume o objeto do trabalho e sua contribuição para o campo",
+  autor:       "Seu Nome Completo",
+  instituicao: "Universidade Federal de Minas Gerais",
+  curso:       "Arquitetura e Urbanismo",
+  ano:         "2026",
+  orientador:  "Prof. Dr. Nome do Orientador",
+
+  /* ── Vídeo ── cole aqui só o ID do YouTube (parte após ?v=) */
+  youtubeId:   null,          /* ex: "dQw4w9WgXcQ" */
+  linkTCC:     "#",           /* URL do PDF do TCC */
+
+  /* ── Contato ── */
+  email:       "voce@email.com",
+  linkedin:    "#",
+
+  /* ── Sobre o trabalho ── cada string = um parágrafo ── */
+  resumo: [
+    "Descreva aqui o tema central do seu TCC: o problema investigado, a abordagem metodológica adotada e a contribuição esperada para o campo.",
+    "Utilize dois ou três parágrafos para contextualizar o leitor sobre os objetivos, o método e os principais resultados obtidos."
+  ],
+
+  /* ── Bio ── */
+  bio: "Escreva uma breve apresentação: trajetória acadêmica, áreas de interesse em arquitetura e as motivações que levaram à escolha deste tema.",
+
+  /* ── Capítulos do tutorial ── */
+  capitulos: [
+    { n:"01", titulo:"Introdução",           dur:"—:——", desc:"Contextualização do tema e objetivos da pesquisa" },
+    { n:"02", titulo:"Referencial Teórico",  dur:"—:——", desc:"Fundamentação teórica e revisão bibliográfica" },
+    { n:"03", titulo:"Metodologia",          dur:"—:——", desc:"Processo projetual e ferramentas utilizadas" },
+    { n:"04", titulo:"Resultados",           dur:"—:——", desc:"Apresentação das propostas e análises" },
+    { n:"05", titulo:"Conclusão",            dur:"—:——", desc:"Considerações finais e desdobramentos futuros" },
+  ],
+};
+</script>
+<!-- ════════════════════════════════════════════════════ -->
+
+
+<!-- NAV -->
+<nav>
+  <button class="brand" onclick="go('inicio')">TCC <span>·</span> AU</button>
+  <nav class="nav-links">
+    <a href="#inicio"    data-s="inicio">Início</a>
+    <a href="#video"     data-s="video">Vídeo</a>
+    <a href="#sobre"     data-s="sobre">Sobre</a>
+    <a href="#capitulos" data-s="capitulos">Capítulos</a>
+    <a href="#autor"     data-s="autor">Autor</a>
+  </nav>
+</nav>
+
+<!-- HERO -->
+<section id="inicio">
+  <div class="grid-bg"></div>
+  <div class="hero-inner inner">
+    <div class="label" id="j-label"></div>
+    <h1 id="j-titulo"></h1>
+    <p class="hero-sub" id="j-sub"></p>
+    <div class="tags"   id="j-tags"></div>
+    <div class="hero-ctas">
+      <button class="btn-dk" onclick="go('video')">▶ Assistir ao tutorial</button>
+      <a id="j-link-tcc" class="btn-ol">↓ Acessar TCC completo</a>
+    </div>
+    <div class="hero-meta" id="j-meta"></div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section id="video">
+  <div class="inner">
+    <div class="label-lt">Tutorial em vídeo</div>
+    <h2>Assista à apresentação</h2>
+    <div id="j-video"></div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="inner sobre-grid">
+    <div>
+      <div class="label">Sobre o trabalho</div>
+      <div class="sobre-rule"></div>
+    </div>
+    <div>
+      <h2>O que você vai encontrar neste tutorial</h2>
+      <div id="j-resumo"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPÍTULOS -->
+<section id="capitulos">
+  <div class="inner">
+    <div class="label">Estrutura do tutorial</div>
+    <h2>Capítulos</h2>
+    <div class="cap-list" id="j-caps"></div>
+  </div>
+</section>
+
+<!-- AUTOR -->
+<section id="autor">
+  <div class="inner">
+    <div class="autor-grid">
+      <div class="avatar">👤</div>
+      <div>
+        <div class="label-lt">Sobre o autor</div>
+        <h2 id="j-autor-nome"></h2>
+        <p class="autor-role" id="j-autor-role"></p>
+        <p class="autor-bio"  id="j-autor-bio"></p>
+        <div class="autor-ctas">
+          <a id="j-email"    class="btn-g">E-mail</a>
+          <a id="j-linkedin" class="btn-ol-lt">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span id="j-foot-l"></span>
+  <span id="j-foot-r"></span>
+</footer>
+
+
+<script>
+/* ─── helpers ─── */
+function go(id){
+  document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+}
+function el(id){return document.getElementById(id);}
+
+/* ─── populate ─── */
+document.title = `TCC — ${C.titulo}`;
+
+el('j-label').textContent = `Trabalho de Conclusão de Curso — ${C.ano}`;
+el('j-titulo').textContent = C.titulo;
+el('j-sub').textContent    = C.subtitulo;
+el('j-link-tcc').href      = C.linkTCC;
+el('j-meta').innerHTML     =
+  `<div>Orientador(a): ${C.orientador}</div><div>${C.autor} — ${C.ano}</div>`;
+
+[C.instituicao, C.curso].forEach(t => {
+  const s = document.createElement('span');
+  s.textContent = t;
+  el('j-tags').appendChild(s);
+});
+
+/* video */
+el('j-video').innerHTML = C.youtubeId
+  ? `<div class="video-wrap">
+       <iframe src="https://www.youtube.com/embed/${C.youtubeId}"
+               allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"
+               allowfullscreen></iframe>
+     </div>`
+  : `<div class="video-ph">
+       <div class="ph-grid"></div>
+       <div class="ph-inner">
+         <div class="ph-play">▶</div>
+         <p>Configure seu vídeo em <strong>C.youtubeId</strong></p>
+         <p class="ph-hint">ex: youtubeId: "dQw4w9WgXcQ"</p>
+       </div>
+     </div>`;
+
+/* sobre */
+C.resumo.forEach(txt => {
+  const p = document.createElement('p');
+  p.textContent = txt;
+  el('j-resumo').appendChild(p);
+});
+
+/* capítulos */
+C.capitulos.forEach(c => {
+  el('j-caps').insertAdjacentHTML('beforeend',
+    `<div class="cap-card">
+       <span class="cap-n">${c.n}</span>
+       <div>
+         <div class="cap-title">${c.titulo}</div>
+         <div class="cap-desc">${c.desc}</div>
+       </div>
+       <span class="cap-dur">${c.dur}</span>
+     </div>`);
+});
+
+/* autor */
+el('j-autor-nome').textContent = C.autor;
+el('j-autor-role').textContent = `${C.curso} — ${C.instituicao}`;
+el('j-autor-bio').textContent  = C.bio;
+el('j-email').href             = `mailto:${C.email}`;
+el('j-linkedin').href          = C.linkedin;
+
+/* footer */
+el('j-foot-l').textContent = `© ${C.ano} ${C.autor}`;
+el('j-foot-r').textContent = `${C.instituicao} · ${C.curso}`;
+
+/* ─── active nav on scroll ─── */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('act'));
+      const a = document.querySelector(`.nav-links a[data-s="${e.target.id}"]`);
+      if(a) a.classList.add('act');
+    }
+  });
+},{threshold:.4});
+
+['inicio','video','sobre','capitulos','autor'].forEach(id => {
+  const s = document.getElementById(id);
+  if(s) obs.observe(s);
+});
+</script>
+</body>
+</html>
