@@ -107,15 +107,12 @@ section{padding:100px 48px;}
   background-size:60px 60px;
 }
 
+/* Quadrados com tamanho fixado em 60px para casar milimetricamente com a malha quadriculada */
 .quadrado-decorativo {
   position: absolute;
   width: 60px;
   height: 60px;
-}
-@media(max-width: 1360px) {
-  .quadrado-decorativo {
-    display: none;
-  }
+  opacity: 0.7;
 }
 
 .hero-inner{
@@ -303,20 +300,6 @@ footer span{
     aspect-ratio: 1 / 1.414 !important;
     max-height: 65vh;
   }
-
-  /* Distribuição sutil dos blocos respeitando rigorosamente o tamanho do grid de 60px */
-  .quadrado-decorativo {
-    display: none !important; /* Oculta os excessos para manter a leveza visual */
-    width: 60px !important;
-    height: 60px !important;
-    opacity: 0.5;
-  }
-  /* Exibe e posiciona q1 a q4 em múltiplos exatos de 60px usando 'left' (garantindo o alinhamento magnético com a malha) */
-  .q1, .q2, .q3, .q4 { display: block !important; }
-  .q1 { top: 120px !important; left: 180px !important; right: auto !important; }
-  .q2 { top: 300px !important; left: 0px !important; right: auto !important; }
-  .q3 { top: 480px !important; left: 120px !important; right: auto !important; }
-  .q4 { top: 660px !important; left: 60px !important; right: auto !important; }
 }
 </style>
 </head>
@@ -350,7 +333,7 @@ const C = {
 
   /* ── Capítulos do tutorial ── */
   capitulos: [
-    { n:"01", titulo:"Introdução",          dur:"—:——", desc:"Contextualização do tema e objetivos da pesquisa" },
+    { n:"01", titulo:"Introdução",          dur:"—:——", desc:"Contextualização do tema e objectives da pesquisa" },
     { n:"02", titulo:"Referencial Teórico",  dur:"—:——", desc:"Fundamentação teórica e revisão bibliográfica" },
     { n:"03", titulo:"Metodologia",          dur:"—:——", desc:"Processo projetual e ferramentas utilizadas" },
     { n:"04", titulo:"Resultados",           dur:"—:——", desc:"Apresentação das propostas e análises" },
@@ -372,15 +355,15 @@ const C = {
 
 <section id="inicio">
   <div class="grid-bg">
-    <div class="quadrado-decorativo q1" style="top: 120px; left: 960px; background:#ffacd1;"></div>
-    <div class="quadrado-decorativo q2" style="top: 180px; left: 1080px; background:#ff7272;"></div>
-    <div class="quadrado-decorativo q3" style="top: 240px; left: 1020px; background:#8ac8fb;"></div>
-    <div class="quadrado-decorativo q4" style="top: 300px; left: 1140px; background:#8ca36a;"></div>
-    <div class="quadrado-decorativo q5" style="top: 360px; left: 960px; background:#f7e07f;"></div>
-    <div class="quadrado-decorativo q6" style="top: 420px; left: 1080px; background:#999999;"></div>
-    <div class="quadrado-decorativo q7" style="top: 240px; left: 1200px; background:#ffacd1;"></div>
-    <div class="quadrado-decorativo q8" style="top: 480px; left: 1020px; background:#8ac8fb;"></div>
-    <div class="quadrado-decorativo q9" style="top: 360px; left: 1260px; background:#ff7272;"></div>
+    <div class="quadrado-decorativo" style="bottom: 120px; right: 60px; background:#ffacd1;"></div>
+    <div class="quadrado-decorativo" style="bottom: 120px; right: 120px; background:#ff7272;"></div>
+    <div class="quadrado-decorativo" style="bottom: 180px; right: 0px; background:#8ac8fb;"></div>
+    <div class="quadrado-decorativo" style="bottom: 180px; right: 60px; background:#8ca36a;"></div>
+    <div class="quadrado-decorativo" style="bottom: 240px; right: 60px; background:#f7e07f;"></div>
+    <div class="quadrado-decorativo" style="bottom: 240px; right: 120px; background:#999999;"></div>
+    <div class="quadrado-decorativo" style="bottom: 300px; right: 0px; background:#ffacd1;"></div>
+    <div class="quadrado-decorativo" style="bottom: 300px; right: 60px; background:#8ac8fb;"></div>
+    <div class="quadrado-decorativo" style="bottom: 360px; right: 0px; background:#ff7272;"></div>
   </div>
   
   <div class="hero-inner inner">
