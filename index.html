@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TCC — Carregando…</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* ─── RESET ─── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -31,13 +30,13 @@ img{max-width:100%;display:block;}
 /* ─── BASE ─── */
 body{
   /* Fonte alterada conforme solicitado */
-  font-family: 'Swiss721 BT Condensed', 'Arial Narrow', sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size:16px;line-height:1.6;
   color:var(--text);background:var(--bg);
   overflow-x:hidden;
 }
-.display{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;}
-.mono   {font-family:'Space Mono',monospace;}
+.display{font-family:Helvetica, Arial, sans-serif;font-weight:300;}
+.mono   {font-family:Helvetica, Arial, sans-serif;}
 
 /* ─── NAV ─── */
 nav{
@@ -49,7 +48,7 @@ nav{
   display:flex;align-items:center;justify-content:space-between;
 }
 .brand{
-  font-family:'Cormorant Garamond',Georgia,serif;
+  font-family:Helvetica, Arial, sans-serif;
   font-size:18px;font-weight:300;letter-spacing:.02em;
   color:var(--text);cursor:pointer;
   background:none;border:none;
@@ -64,7 +63,7 @@ nav{
 
 /* ─── LABELS ─── */
 .label,.label-lt{
-  font-family:'Space Mono',monospace;
+  font-family:Helvetica, Arial, sans-serif;
   font-size:10px;letter-spacing:.15em;text-transform:uppercase;
   display:flex;align-items:center;gap:8px;
 }
@@ -77,7 +76,7 @@ nav{
 /* ─── BUTTONS ─── */
 .btn-dk,.btn-ol,.btn-g,.btn-ol-lt{
   display:inline-block;
-  font-family: 'Swiss721 BT Condensed', 'Arial Narrow', sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size:14px;font-weight:500;letter-spacing:.02em;
   cursor:pointer;border:none;
   transition:background .2s,color .2s;
@@ -113,15 +112,15 @@ section{padding:100px 48px;}
   padding:120px 0 80px;position:relative;width:100%;
 }
 .hero-inner h1{
-  font-family:'Cormorant Garamond',Georgia,serif;
+  font-family:Helvetica, Arial, sans-serif;
   font-weight:300;
-  font-size:clamp(36px,6vw,68px);
+  font-size:clamp(30px,4.8vw,54px);
   line-height:1.06;letter-spacing:-.01em;
   color:var(--dk);max-width:780px;margin-bottom:26px;
 }
 .hero-sub{
   font-size:18px;font-weight:300;line-height:1.75;
-  color:var(--muted);max-width:520px;margin-bottom:20px;
+  color:var(--muted);max-width:520px;margin-bottom:20px;text-align:justify;
 }
 .tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:48px;}
 .tags span{
@@ -132,14 +131,14 @@ section{padding:100px 48px;}
 .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
 .hero-meta{
   position:absolute;right:0;bottom:0;
-  font-family:'Space Mono',monospace;font-size:11px;
+  font-family:Helvetica, Arial, sans-serif;font-size:11px;
   color:#AAAAAA;line-height:2.2;text-align:right;
 }
 
 /* ─── VIDEO ─── */
 #video{background:var(--dk);padding:80px 48px;}
 #video h2{
-  font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
+  font-family:Helvetica, Arial, sans-serif;font-weight:300;
   font-size:clamp(26px,3.5vw,40px);
   color:var(--bg);margin-bottom:36px;letter-spacing:.01em;
   margin-top:14px;
@@ -161,24 +160,24 @@ section{padding:100px 48px;}
 }
 .ph-inner{position:relative;z-index:1;text-align:center;padding:24px;}
 .ph-play{font-size:44px;color:var(--green);margin-bottom:14px;}
-.ph-inner p{font-family:'Space Mono',monospace;font-size:12px;color:var(--gl);}
-.ph-hint{font-size:12px;color:#5C8A58;margin-top:8px;font-family: 'Swiss721 BT Condensed', 'Arial Narrow', sans-serif;}
+.ph-inner p{font-family:Helvetica, Arial, sans-serif;font-size:12px;color:var(--gl);}
+.ph-hint{font-size:12px;color:#5C8A58;margin-top:8px;font-family: Helvetica, Arial, sans-serif;}
 
 /* ─── SOBRE ─── */
 #sobre{background:var(--bg-mid);}
 .sobre-grid{display:grid;grid-template-columns:200px 1fr;gap:60px;align-items:start;}
 .sobre-rule{width:36px;height:2px;background:var(--green);margin-top:18px;}
 #sobre h2{
-  font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
+  font-family:Helvetica, Arial, sans-serif;font-weight:300;
   font-size:clamp(26px,3vw,36px);
   color:var(--dk);line-height:1.2;margin-bottom:24px;
 }
-#sobre p{font-size:16px;line-height:1.85;color:var(--muted);margin-bottom:16px;}
+#sobre p{font-size:16px;line-height:1.85;color:var(--muted);margin-bottom:16px;text-align:justify;}
 
 /* ─── CAPÍTULOS ─── */
 #capitulos{background:var(--bg);}
 #capitulos h2{
-  font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
+  font-family:Helvetica, Arial, sans-serif;font-weight:300;
   font-size:clamp(30px,4vw,44px);
   color:var(--dk);margin-bottom:44px;margin-top:14px;
 }
@@ -194,10 +193,10 @@ section{padding:100px 48px;}
   border-color:var(--green);
   box-shadow:0 2px 14px rgba(92,143,80,.1);
 }
-.cap-n    {font-family:'Space Mono',monospace;font-size:11px;color:var(--gl);font-weight:700;letter-spacing:.05em;}
+.cap-n    {font-family:Helvetica, Arial, sans-serif;font-size:11px;color:var(--gl);font-weight:700;letter-spacing:.05em;}
 .cap-title{font-size:15px;font-weight:500;color:var(--dk);margin-bottom:4px;}
 .cap-desc {font-size:13px;color:var(--dim);line-height:1.5;}
-.cap-dur  {font-family:'Space Mono',monospace;font-size:12px;color:#AAAAAA;text-align:right;white-space:nowrap;}
+.cap-dur  {font-family:Helvetica, Arial, sans-serif;font-size:12px;color:#AAAAAA;text-align:right;white-space:nowrap;}
 
 /* ─── AUTOR ─── */
 #autor{background:var(--dk);padding:100px 48px;}
@@ -209,15 +208,15 @@ section{padding:100px 48px;}
   font-size:52px;flex-shrink:0;
 }
 #autor h2{
-  font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;
+  font-family:Helvetica, Arial, sans-serif;font-weight:300;
   font-size:clamp(26px,3.5vw,40px);
   color:var(--bg);margin-bottom:8px;margin-top:14px;
 }
 .autor-role{
-  font-family:'Space Mono',monospace;font-size:12px;
+  font-family:Helvetica, Arial, sans-serif;font-size:12px;
   color:var(--green);margin-bottom:20px;letter-spacing:.03em;
 }
-.autor-bio{font-size:15px;color:#B8B8A8;line-height:1.8;margin-bottom:28px;}
+.autor-bio{font-size:15px;color:#B8B8A8;line-height:1.8;margin-bottom:28px;text-align:justify;}
 .autor-ctas{display:flex;gap:12px;flex-wrap:wrap;}
 
 /* ─── FOOTER ─── */
@@ -227,7 +226,7 @@ footer{
   display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
 }
 footer span{
-  font-family:'Space Mono',monospace;
+  font-family:Helvetica, Arial, sans-serif;
   font-size:10px;color:#3A5A38;letter-spacing:.08em;
 }
 
@@ -253,16 +252,17 @@ footer span{
 <script>
 const C = {
   titulo:      "Modelo Paramétrico de Referência para Estudo Preliminar de Instituições de Longa Permanência para Idosos (ILPIs).",
-  subtitulo:   "Uma linha que resume o objeto do trabalho e sua contribuição para o campo",
+  subtitulo:   "Método dinâmico de suporte à decisão, que otimiza a etapa de estudos preliminares e auxilia arquitetos na concepção de soluções alinhadas às normativas vigentes e às necessidades da população idosa.",
   autor:       "Stella Andrade de Pádua Carvalho",
   instituicao: "Universidade Federal de Minas Gerais",
   curso:       "Arquitetura e Urbanismo",
-  ano:         "2026",
+  ano:         "2026/1",
   orientador:  "Rejane Magiag Loura",
 
   /* ── Vídeo ── cole aqui só o ID do YouTube (parte após ?v=) */
   youtubeId:   null,          /* ex: "dQw4w9WgXcQ" */
-  linkTCC:     "#",           /* URL do PDF do TCC */
+  linkTCC:     "#",
+  linkBanner:  "#",           /* URL do PDF do TCC */
 
   /* ── Contato ── */
   email:       "voce@email.com",
@@ -293,7 +293,7 @@ const C = {
     <a href="#inicio"    data-s="inicio">Início</a>
     <a href="#video"     data-s="video">Vídeo</a>
     <a href="#sobre"     data-s="sobre">Sobre</a>
-    <a href="#capitulos" data-s="capitulos">Capítulos</a>
+    <a href="#capitulos" data-s="banner">Banner</a>
     <a href="#autor"     data-s="autor">Autor</a>
   </nav>
 </nav>
@@ -307,7 +307,7 @@ const C = {
     <div class="tags"   id="j-tags"></div>
     <div class="hero-ctas">
       <button class="btn-dk" onclick="go('video')">▶ Assistir ao tutorial</button>
-      <a id="j-link-tcc" class="btn-ol">↓ Acessar TCC completo</a>
+      <a id="j-link-banner" class="btn-ol">↓ Acessar banner</a>
     </div>
     <div class="hero-meta" id="j-meta"></div>
   </div>
@@ -334,11 +334,15 @@ const C = {
   </div>
 </section>
 
-<section id="capitulos">
+<section id="banner">
   <div class="inner">
-    <div class="label">Estrutura do tutorial</div>
-    <h2>Capítulos</h2>
-    <div class="cap-list" id="j-caps"></div>
+    <div class="label">Banner do trabalho</div>
+    <h2>Banner</h2>
+    
+<div style="background:#fff;border:1px solid var(--border);padding:24px;text-align:center;">
+  <iframe id="bannerFrame" src="#" style="width:100%;height:900px;border:none;"></iframe>
+</div>
+
   </div>
 </section>
 
@@ -379,7 +383,7 @@ document.title = `TCC — ${C.titulo}`;
 el('j-label').textContent = `Trabalho de Conclusão de Curso — ${C.ano}`;
 el('j-titulo').textContent = C.titulo;
 el('j-sub').textContent    = C.subtitulo;
-el('j-link-tcc').href      = C.linkTCC;
+el('j-link-banner').href = C.linkBanner;
 el('j-meta').innerHTML     =
   `<div>Orientador(a): ${C.orientador}</div><div>${C.autor} — ${C.ano}</div>`;
 
@@ -412,18 +416,10 @@ C.resumo.forEach(txt => {
   el('j-resumo').appendChild(p);
 });
 
-/* capítulos */
-C.capitulos.forEach(c => {
-  el('j-caps').insertAdjacentHTML('beforeend',
-    `<div class="cap-card">
-       <span class="cap-n">${c.n}</span>
-       <div>
-         <div class="cap-title">${c.titulo}</div>
-         <div class="cap-desc">${c.desc}</div>
-       </div>
-       <span class="cap-dur">${c.dur}</span>
-     </div>`);
-});
+/* banner */
+if(document.getElementById('bannerFrame')){
+  document.getElementById('bannerFrame').src = C.linkBanner;
+}
 
 /* autor */
 el('j-autor-nome').textContent = C.autor;
@@ -447,11 +443,10 @@ const obs = new IntersectionObserver(entries => {
   });
 },{threshold:.4});
 
-['inicio','video','sobre','capitulos','autor'].forEach(id => {
+['inicio','video','sobre','banner','autor'].forEach(id => {
   const s = document.getElementById(id);
   if(s) obs.observe(s);
 });
 </script>
 </body>
 </html>
-
