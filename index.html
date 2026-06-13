@@ -114,7 +114,7 @@ section{padding:100px 48px;}
 }
 @media(max-width: 1360px) {
   .quadrado-decorativo {
-    display: none !important;
+    display: none;
   }
 }
 
@@ -211,23 +211,30 @@ section{padding:100px 48px;}
 .cap-desc {font-size:13px;color:var(--dim);line-height:1.5;}
 .cap-dur  {font-family:Helvetica, Arial, sans-serif;font-size:12px;color:#AAAAAA;text-align:right;white-space:nowrap;}
 
-/* ─── BANNER RESPONSIVO ─── */
-.banner-desktop {
+/* ─── BANNER CONFIGS RESPONSIVAS ─── */
+.banner-object {
+  width: 100%;
+  height: 1200px;
+  border: none;
+}
+.banner-fullscreen-box {
   display: block;
+  margin-bottom: 20px;
 }
 .banner-mobile-card {
   display: none;
   background: #FFF;
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 32px 24px;
+  padding: 24px;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  margin-bottom: 24px;
 }
 .banner-mobile-card p {
   font-size: 15px;
   color: var(--muted);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 /* ─── AUTOR ─── */
@@ -282,9 +289,30 @@ footer span{
   .cap-card   {grid-template-columns:32px 1fr;gap:14px;}
   .cap-dur    {display:none;}
 
-  /* Inverte a exibição do banner no mobile para evitar quebras */
-  .banner-desktop { display: none !important; }
-  .banner-mobile-card { display: block !important; }
+  .banner-mobile-card { 
+    display: block !important; 
+  }
+  .banner-fullscreen-box { 
+    display: none !important; 
+  }
+  .banner-object {
+    height: auto !important;
+    aspect-ratio: 1 / 1.414 !important;
+    max-height: 65vh;
+  }
+
+  /* Reativação e Ajuste Fino dos Quadrados no Mobile */
+  .q1, .q2, .q3, .q4 {
+    display: block !important;
+    width: 25px !important;
+    height: 25px !important;
+    left: auto !important;
+  }
+  /* Monta um mosaico limpo 2x2 no canto superior direito sem cruzar com as escritas */
+  .q1 { top: 75px !important;  right: 24px !important; }
+  .q2 { top: 75px !important;  right: 54px !important; }
+  .q3 { top: 105px !important; right: 24px !important; }
+  .q4 { top: 105px !important; right: 54px !important; }
 }
 </style>
 </head>
@@ -314,7 +342,7 @@ const C = {
   ],
 
   /* ── Bio ── */
-  bio: "Graduanda em Arquitetura e Urbanismo pela Universidade Federal de Minas Gerais (UFMG), desenvolveu sua trajetória acadêmica com interesse em projeto arquitetônico, design computacional paramétrico e aplicação de tecnologias digitais ao processo de projeto. Ao longo da graduação, buscou aprofundar conhecimentos em modelagem tridimensional, visualização arquitetônica e metodologias computacionais voltadas ao apoio à tomada de decisão. A escolha do tema deste trabalho surgiu do interesse em investigar como ferramentas paramétricas e inteligência artificial podem contribuir para a concepção de ambientes mais inclusivos e adaptáveis, especialmente diante do envelhecimento da população e da crescente demanda por espaços que promovam qualidade de vida, acessibilidade e bem-estar para pessoas idosas.",
+  bio: "Graduanda em Arquitetura e Urbanismo pela Universidade Federal de Minas Gerais (UFMG), desenvolveu sua trajetória acadêmica com interesse em projeto arquitetônico, design computacional paramétrico e aplicação de tecnologias digitais ao processo de projeto. Ao longo da graduação, buscou aprofundar conhecimentos em modelagem tridimensional, visualização arquitetônica e metodologias computacionais voltadas ao apoio à tomada de decisão. A escolha do tema deste trabalho surgiu do interesse ininvestigar como ferramentas paramétricas e inteligência artificial podem contribuir para a concepção de ambientes mais inclusivos e adaptáveis, especialmente diante do envelhecimento da população e da crescente demanda por espaços que promovam qualidade de vida, acessibilidade e bem-estar para pessoas idosas.",
 
   /* ── Capítulos do tutorial ── */
   capitulos: [
@@ -340,15 +368,15 @@ const C = {
 
 <section id="inicio">
   <div class="grid-bg">
-    <div class="quadrado-decorativo" style="top: 120px; left: 960px; background:#ffacd1;"></div>
-    <div class="quadrado-decorativo" style="top: 180px; left: 1080px; background:#ff7272;"></div>
-    <div class="quadrado-decorativo" style="top: 240px; left: 1020px; background:#8ac8fb;"></div>
-    <div class="quadrado-decorativo" style="top: 300px; left: 1140px; background:#8ca36a;"></div>
-    <div class="quadrado-decorativo" style="top: 360px; left: 960px; background:#f7e07f;"></div>
-    <div class="quadrado-decorativo" style="top: 420px; left: 1080px; background:#999999;"></div>
-    <div class="quadrado-decorativo" style="top: 240px; left: 1200px; background:#ffacd1;"></div>
-    <div class="quadrado-decorativo" style="top: 480px; left: 1020px; background:#8ac8fb;"></div>
-    <div class="quadrado-decorativo" style="top: 360px; left: 1260px; background:#ff7272;"></div>
+    <div class="quadrado-decorativo q1" style="top: 120px; left: 960px; background:#ffacd1;"></div>
+    <div class="quadrado-decorativo q2" style="top: 180px; left: 1080px; background:#ff7272;"></div>
+    <div class="quadrado-decorativo q3" style="top: 240px; left: 1020px; background:#8ac8fb;"></div>
+    <div class="quadrado-decorativo q4" style="top: 300px; left: 1140px; background:#8ca36a;"></div>
+    <div class="quadrado-decorativo q5" style="top: 360px; left: 960px; background:#f7e07f;"></div>
+    <div class="quadrado-decorativo q6" style="top: 420px; left: 1080px; background:#999999;"></div>
+    <div class="quadrado-decorativo q7" style="top: 240px; left: 1200px; background:#ffacd1;"></div>
+    <div class="quadrado-decorativo q8" style="top: 480px; left: 1020px; background:#8ac8fb;"></div>
+    <div class="quadrado-decorativo q9" style="top: 360px; left: 1260px; background:#ff7272;"></div>
   </div>
   
   <div class="hero-inner inner">
@@ -390,23 +418,22 @@ const C = {
     <div class="label">Banner do trabalho</div>
     <h2>Banner</h2>
 
-    <div class="banner-desktop">
-      <div style="margin-bottom:20px;">
-        <a href="A1%20STELLA%20FINAL%20CERTO.pdf" target="_blank" class="btn-dk">
-          Abrir banner em tela cheia
-        </a>
-      </div>
-      <object data="A1%20STELLA%20FINAL%20CERTO.pdf" type="application/pdf" width="100%" height="1200">
-        <p>Seu navegador não conseguiu exibir o PDF. <a href="A1%20STELLA%20FINAL%20CERTO.pdf" target="_blank">Clique aqui para abrir.</a></p>
-      </object>
-    </div>
-
     <div class="banner-mobile-card">
-      <p>Para uma visualização ideal e detalhada do banner técnico A1 em dispositivos móveis, acesse o documento completo em tela cheia.</p>
+      <p>Para uma melhor experiência de leitura e visualização dos detalhes técnicos, recomendamos abrir o banner em tela cheia.</p>
       <a href="A1%20STELLA%20FINAL%20CERTO.pdf" target="_blank" class="btn-dk" style="width: 100%; text-align: center;">
-        🗂️ Abrir Banner Completo (PDF)
+        🗂️ Abrir Banner em Tela Cheia
       </a>
     </div>
+
+    <div class="banner-fullscreen-box">
+      <a href="A1%20STELLA%20FINAL%20CERTO.pdf" target="_blank" class="btn-dk">
+        Abrir banner em tela cheia
+      </a>
+    </div>
+
+    <object data="A1%20STELLA%20FINAL%20CERTO.pdf" type="application/pdf" class="banner-object">
+      <p>Seu navegador não conseguiu exibir o PDF. <a href="A1%20STELLA%20FINAL%20CERTO.pdf" target="_blank">Clique aqui para abrir o banner.</a></p>
+    </object>
 
   </div>
 </section>
