@@ -29,7 +29,6 @@ img{max-width:100%;display:block;}
 
 /* ─── BASE ─── */
 body{
-  /* Fonte alterada conforme solicitado */
   font-family: Helvetica, Arial, sans-serif;
   font-size:16px;line-height:1.6;
   color:var(--text);background:var(--bg);
@@ -262,7 +261,7 @@ const C = {
   /* ── Vídeo ── cole aqui só o ID do YouTube (parte após ?v=) */
   youtubeId:   null,          /* ex: "dQw4w9WgXcQ" */
   linkTCC:     "#",
-  linkBanner:  "#",           /* URL do PDF do TCC */
+  linkBanner:  "A1%20STELLA%20FINAL%20CERTO.pdf", /* URL ajustada para o botão principal do Hero */
 
   /* ── Contato ── */
   email:       "voce@email.com",
@@ -293,7 +292,7 @@ const C = {
     <a href="#inicio"    data-s="inicio">Início</a>
     <a href="#video"     data-s="video">Vídeo</a>
     <a href="#sobre"     data-s="sobre">Sobre</a>
-    <a href="#capitulos" data-s="banner">Banner</a>
+    <a href="#banner"    data-s="banner">Banner</a>
     <a href="#autor"     data-s="autor">Autor</a>
   </nav>
 </nav>
@@ -307,7 +306,7 @@ const C = {
     <div class="tags"   id="j-tags"></div>
     <div class="hero-ctas">
       <button class="btn-dk" onclick="go('video')">▶ Assistir ao tutorial</button>
-      <a id="j-link-banner" class="btn-ol">↓ Acessar banner</a>
+      <a id="j-link-banner" class="btn-ol" target="_blank">↓ Acessar banner</a>
     </div>
     <div class="hero-meta" id="j-meta"></div>
   </div>
@@ -339,22 +338,29 @@ const C = {
     <div class="label">Banner do trabalho</div>
     <h2>Banner</h2>
 
-    <div style="
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius:8px;
-      overflow:hidden;
-      box-shadow:0 4px 20px rgba(0,0,0,.05);
-    ">
-      <iframe
-        src="A1 STELLA FINAL CERTO.pdf"
-        style="
-          width:100%;
-          height:1200px;
-          border:none;
-        ">
-      </iframe>
+    <div style="margin-bottom:20px;">
+      <a
+        href="A1%20STELLA%20FINAL%20CERTO.pdf"
+        target="_blank"
+        class="btn-dk">
+        Abrir banner em tela cheia
+      </a>
     </div>
+
+    <object
+      data="A1%20STELLA%20FINAL%20CERTO.pdf"
+      type="application/pdf"
+      width="100%"
+      height="1200">
+
+      <p>
+        Seu navegador não conseguiu exibir o PDF.
+        <a href="A1%20STELLA%20FINAL%20CERTO.pdf" target="_blank">
+          Clique aqui para abrir o banner.
+        </a>
+      </p>
+
+    </object>
 
   </div>
 </section>
@@ -427,11 +433,6 @@ C.resumo.forEach(txt => {
   p.textContent = txt;
   el('j-resumo').appendChild(p);
 });
-
-/* banner */
-if(document.getElementById('bannerFrame')){
-  document.getElementById('bannerFrame').src = C.linkBanner;
-}
 
 /* autor */
 el('j-autor-nome').textContent = C.autor;
