@@ -34,6 +34,8 @@ body{
   color:var(--text);background:var(--bg);
   overflow-x:hidden;
 }
+.display{font-family:Helvetica, Arial, sans-serif;font-weight:300;}
+.mono   {font-family:Helvetica, Arial, sans-serif;}
 
 /* ─── NAV ─── */
 nav{
@@ -82,21 +84,10 @@ nav{
 .btn-dk:hover{background:#333333;}
 .btn-ol    {background:transparent;color:var(--dk);border:1.5px solid var(--dk);padding:11px 24px;}
 .btn-ol:hover{background:var(--dk);color:var(--bg);}
-
-/* ─── CONTAINER SCRIPT ─── */
-.script-container {
-    overflow-x: auto;
-    white-space: nowrap;
-    border: 1px solid var(--border);
-    background: #FFF;
-    margin-top: 20px;
-    padding: 10px;
-}
-.script-container img {
-    height: 350px;
-    width: auto;
-    image-rendering: crisp-edges;
-}
+.btn-g     {background:var(--green);color:var(--bg);padding:13px 28px;}
+.btn-g:hover{background:#555555;}
+.btn-ol-lt {background:transparent;color:var(--bg);border:1.5px solid var(--green);padding:11px 24px;}
+.btn-ol-lt:hover{background:rgba(102,102,102,.15);}
 
 /* ─── SHARED ─── */
 .inner{max-width:var(--fw);margin:0 auto;}
@@ -122,7 +113,9 @@ section{padding:100px 48px;}
   height: 60px;
 }
 @media(max-width: 1360px) {
-  .quadrado-decorativo { display: none; }
+  .quadrado-decorativo {
+    display: none;
+  }
 }
 
 .hero-inner{
@@ -220,6 +213,75 @@ section{padding:100px 48px;}
   margin-bottom: 16px;
 }
 
+/* ─── SCRIPT ─── */
+#script{
+  background: var(--dkr);
+  padding: 100px 0;
+}
+#script .inner{
+  padding: 0 48px;
+}
+#script h2{
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: clamp(26px, 3.5vw, 40px);
+  color: var(--bg);
+  margin-bottom: 12px;
+  letter-spacing: .01em;
+  margin-top: 14px;
+}
+#script .script-desc{
+  font-size: 15px;
+  font-weight: 300;
+  color: #B8B8A8;
+  margin-bottom: 36px;
+  line-height: 1.7;
+  max-width: 620px;
+}
+.script-img-wrap{
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid #2E2E2E;
+  background: #1A1A1A;
+  position: relative;
+}
+.script-img-wrap::-webkit-scrollbar{
+  height: 6px;
+}
+.script-img-wrap::-webkit-scrollbar-track{
+  background: #111;
+}
+.script-img-wrap::-webkit-scrollbar-thumb{
+  background: #444;
+  border-radius: 3px;
+}
+.script-img-wrap::-webkit-scrollbar-thumb:hover{
+  background: #666;
+}
+.script-img-wrap img{
+  display: block;
+  width: 100%;
+  min-width: 900px;
+  height: auto;
+  image-rendering: auto;
+}
+.script-hint{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  color: #555;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.script-hint::before{
+  content: '←→';
+  font-size: 13px;
+  color: #444;
+}
+
 /* ─── AUTOR ─── */
 #autor{background:var(--dk);padding:100px 48px;}
 .autor-grid{display:grid;grid-template-columns:160px 1fr;gap:56px;align-items:center;}
@@ -256,22 +318,49 @@ footer span{
   font-size:10px;color:#666666;letter-spacing:.08em;
 }
 
-/* ─── RESPONSIVE ─── */
+/* ─── RESPONSIVE MASTER ─── */
 @media(max-width:768px){
   nav         {padding:0 16px; height:54px;}
   .brand      {font-size:14px; letter-spacing:0;}
   .nav-links  {display:flex !important; gap:12px;}
   .nav-links a{font-size:11px; letter-spacing:0;}
+
   #inicio     {padding:0 16px;}
   section     {padding:60px 16px;}
   #video      {padding:60px 16px;}
   #autor      {padding:60px 16px;}
   footer      {padding:20px 16px;}
-  .sobre-grid, .autor-grid {grid-template-columns:1fr;gap:32px;}
+  .sobre-grid ,
+  .autor-grid {grid-template-columns:1fr;gap:32px;}
   .hero-meta  {display:none;}
-  .banner-mobile-card { display: block !important; }
-  .banner-fullscreen-box { display: none !important; }
-  .grid-bg, .quadrado-decorativo { display: none !important; }
+  .cap-card   {grid-template-columns:32px 1fr;gap:14px;}
+  .cap-dur    {display:none;}
+
+  .banner-mobile-card { 
+    display: block !important; 
+  }
+  .banner-fullscreen-box { 
+    display: none !important; 
+  }
+  .banner-object {
+    height: auto !important;
+    aspect-ratio: 1 / 1.414 !important;
+    max-height: 65vh;
+  }
+
+  /* Oculta o grid no mobile */
+  .grid-bg {
+    display: none !important;
+  }
+
+  /* Oculta os quadrados decorativos na versão mobile */
+  .quadrado-decorativo {
+    display: none !important;
+  }
+
+  #script{padding:60px 0;}
+  #script .inner{padding:0 16px;}
+  .script-img-wrap img{min-width:700px;}
 }
 </style>
 </head>
@@ -279,30 +368,50 @@ footer span{
 
 <script>
 const C = {
-  titulo: "MODELO PARAMÉTRICO DE REFERÊNCIA PARA ESTUDO PRELIMINAR DE INSTITUIÇÕES DE LONGA PERMANÊNCIA PARA IDOSOS (ILPIs)",
-  subtitulo: "Método dinâmico de suporte à decisão, que otimiza a etapa de estudos preliminares e auxilia arquitetos na concepção de soluções alinhadas às normativas vigentes e às necessidades da população idosa.",
-  autor: "Stella Andrade de Pádua Carvalho",
-  instituicao: "Universidade Federal de Minas Gerais",
-  curso: "Arquitetura e Urbanismo",
-  ano: "2026/1",
-  orientador: "Rejane Magiag Loura",
-  youtubeId: null,
-  linkBanner: "A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf",
-  email: "stella.andradepc@gmail.com",
-  resumo: ["Neste vídeo tutorial, é apresentado o passo a passo para a elaboração de estudos preliminares de Instituições de Longa Permanência para Idosos (ILPIs) por meio do script em Grasshopper desenvolvido neste Trabalho de Conclusão de Curso."],
-  bio: "Stella Andrade é graduanda em Arquitetura e Urbanismo pela Universidade Federal de Minas Gerais (UFMG), com interesse em tecnologias digitais voltadas à arquitetura e ao urbanismo.",
+  titulo:       "MODELO PARAMÉTRICO DE REFERÊNCIA PARA ESTUDO PRELIMINAR DE INSTITUIÇÕES DE LONGA PERMANÊNCIA PARA IDOSOS (ILPIs)",
+  subtitulo:    "Método dinâmico de suporte à decisão, que otimiza a etapa de estudos preliminares e auxilia arquitetos na concepção de soluções alinhadas às normativas vigentes e às necessidades da população idosa.",
+  autor:        "Stella Andrade de Pádua Carvalho",
+  instituicao:  "Universidade Federal de Minas Gerais",
+  curso:        "Arquitetura e Urbanismo",
+  ano:          "2026/1",
+  orientador:   "Rejane Magiag Loura",
+
+  /* ── Vídeo ── cole aqui só o ID do YouTube (parte após ?v=) */
+  youtubeId:    null,       /* ex: "dQw4w9WgXcQ" */
+  linkTCC:      "#",
+  linkBanner:   "A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf", 
+
+  /* ── Contato ── */
+  email:        "stella.andradepc@gmail.com",
+
+  /* ── Sobre o tutoriak ── */
+  resumo: [
+    "Neste vídeo tutorial, é apresentado o passo a passo para a elaboração de estudos preliminares de Instituições de Longa Permanência para Idosos (ILPIs) por meio do script em Grasshopper desenvolvido neste Trabalho de Conclusão de Curso."
+  ],
+
+  /* ── Bio ── */
+  bio: "Stella Andrade é graduanda em Arquitetura e Urbanismo pela Universidade Federal de Minas Gerais (UFMG), com interesse em tecnologias digitais voltadas à arquitetura e ao urbanismo. Participou de um projeto de iniciação científica sobre arquitetura e inteligência artificial, desenvolvido no âmbito de uma pesquisa de pós-doutorado da UFMG. Seus interesses acadêmicos incluem design computacional, modelagem paramétrica e o uso de tecnologias digitais nos processos de projeto arquitetônico.",
+
+  /* ── Capítulos do tutorial ── */
+  capitulos: [
+    { n:"01", titulo:"Introdução",          dur:"—:——", desc:"Contextualização do tema e objetivos da pesquisa" },
+    { n:"02", titulo:"Referencial Teórico",  dur:"—:——", desc:"Fundamentação teórica e revisão bibliográfica" },
+    { n:"03", titulo:"Metodologia",          dur:"—:——", desc:"Processo projetual e ferramentas utilizadas" },
+    { n:"04", titulo:"Resultados",           dur:"—:——", desc:"Apresentação das propostas e análises" },
+    { n:"05", titulo:"Conclusão",            dur:"—:——", desc:"Considerações finais e desdobramentos futuros" },
+  ],
 };
 </script>
 
 <nav>
   <button class="brand" onclick="go('inicio')">TCC <span>·</span> AU</button>
   <nav class="nav-links">
-    <a href="#inicio"  data-s="inicio">Início</a>
-    <a href="#sobre"   data-s="sobre">Sobre</a>
-    <a href="#video"   data-s="video">Vídeo</a>
-    <a href="#script"  data-s="script">Script</a>
-    <a href="#banner"  data-s="banner">Banner</a>
-    <a href="#autor"   data-s="autor">Autor</a>
+    <a href="#inicio"    data-s="inicio">Início</a>
+    <a href="#sobre"     data-s="sobre">Sobre</a>
+    <a href="#video"     data-s="video">Vídeo</a>
+    <a href="#banner"    data-s="banner">Banner</a>
+    <a href="#script"    data-s="script">Script</a>
+    <a href="#autor"     data-s="autor">Autor</a>
   </nav>
 </nav>
 
@@ -318,13 +427,16 @@ const C = {
     <div class="quadrado-decorativo q8" style="top: 480px; left: 1020px; background:#8ac8fb;"></div>
     <div class="quadrado-decorativo q9" style="top: 360px; left: 1260px; background:#ff7272;"></div>
   </div>
+  
   <div class="hero-inner inner">
     <div class="label" id="j-label"></div>
     <h1 id="j-titulo"></h1>
     <p class="hero-sub" id="j-sub"></p>
-    <div class="tags" id="j-tags"></div>
+    <div class="tags"   id="j-tags"></div>
     <div class="hero-ctas">
-      <button class="btn-dk" onclick="go('video')">Assistir ao tutorial</button>
+      <button class="btn-dk" onclick="go('video')">
+        <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor; margin-right:8px; display:inline-block; vertical-align:-2px;"><path d="M8 5v14l11-7z"/></svg>Assistir ao tutorial
+      </button>
       <button class="btn-ol" onclick="go('banner')">↓ Acessar banner</button>
     </div>
     <div class="hero-meta" id="j-meta"></div>
@@ -333,8 +445,14 @@ const C = {
 
 <section id="sobre">
   <div class="inner sobre-grid">
-    <div><div class="label">Sobre o trabalho</div><div class="sobre-rule"></div></div>
-    <div><h2>O que você vai encontrar</h2><div id="j-resumo"></div></div>
+    <div>
+      <div class="label">Sobre o trabalho</div>
+      <div class="sobre-rule"></div>
+    </div>
+    <div>
+      <h2>O que você vai encontrar neste tutorial</h2>
+      <div id="j-resumo"></div>
+    </div>
   </div>
 </section>
 
@@ -346,35 +464,57 @@ const C = {
   </div>
 </section>
 
-<section id="script">
-  <div class="inner">
-    <div class="label">Algoritmo</div>
-    <h2>Definição Paramétrica</h2>
-    <div class="script-container">
-        <img src="IMAGEM TOTAL recortada.PNG" alt="Script Grasshopper">
-    </div>
-    <p style="font-size: 12px; color: #888; margin-top: 10px;"><em>Arraste para o lado para visualizar os detalhes.</em></p>
-  </div>
-</section>
-
 <section id="banner">
   <div class="inner">
     <div class="label">Banner do trabalho</div>
     <h2>Banner</h2>
-    <div class="banner-mobile-card"><a href="A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf" target="_blank" class="btn-dk" style="width: 100%;">Abrir Banner</a></div>
-    <div class="banner-fullscreen-box"><a href="A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf" target="_blank" class="btn-dk">Abrir banner em tela cheia</a></div>
-    <object data="A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf" type="application/pdf" class="banner-object"></object>
+
+    <div class="banner-mobile-card">
+      <p>Para uma melhor experiência de leitura e visualização dos detalhes técnicos, recomendamos abrir o banner em tela cheia.</p>
+      <a href="A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf" target="_blank" class="btn-dk" style="width: 100%; text-align: center;">
+        🗂️ Abrir Banner em Tela Cheia
+      </a>
+    </div>
+
+    <div class="banner-fullscreen-box">
+      <a href="A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf" target="_blank" class="btn-dk">
+        Abrir banner em tela cheia
+      </a>
+    </div>
+
+    <object data="A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf" type="application/pdf" class="banner-object">
+      <p>Seu navegador não conseguiu exibir o PDF. <a href="A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf" target="_blank">Clique aqui para abrir o banner.</a></p>
+    </object>
+
+  </div>
+</section>
+
+<!-- ─── SCRIPT ─── -->
+<section id="script">
+  <div class="inner">
+    <div class="label-lt">Definição paramétrica</div>
+    <h2>Script em Grasshopper</h2>
+    <p class="script-desc">Visão geral do script paramétrico desenvolvido no Grasshopper para geração e otimização de plantas de ILPIs — da leitura do terreno à configuração final dos ambientes.</p>
+    <div class="script-img-wrap">
+      <img src="IMAGEM_TOTAL_recortada.PNG" alt="Visão geral do script paramétrico no Grasshopper">
+    </div>
+    <p class="script-hint">Role horizontalmente para explorar o script completo</p>
   </div>
 </section>
 
 <section id="autor">
   <div class="inner">
     <div class="autor-grid">
-      <img src="imagemdeperfil.jpg" alt="Perfil" class="avatar">
+      <img src="imagemdeperfil.jpg" alt="Foto de perfil de Stella" class="avatar">
       <div>
+        <div class="label-lt">Sobre o autor</div>
         <h2 id="j-autor-nome"></h2>
         <p class="autor-role" id="j-autor-role"></p>
-        <p class="autor-bio" id="j-autor-bio"></p>
+        <p class="autor-bio"  id="j-autor-bio"></p>
+        <p style="color:#B8B8A8; font-size:18px; font-weight:300; line-height:1.75; margin-top:20px;">
+          Caso queira contactar o autor, envie um e-mail para: 
+          <a id="j-email" style="color:var(--green); font-weight:500; text-decoration:underline;"></a>
+        </p>
       </div>
     </div>
   </div>
@@ -386,15 +526,80 @@ const C = {
 </footer>
 
 <script>
-function go(id){ document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); }
-const el = (id) => document.getElementById(id);
+/* ─── helpers ─── */
+function go(id){
+  document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+}
+function el(id){return document.getElementById(id);}
+
+/* ─── populate ─── */
+document.title = `TCC — ${C.titulo}`;
+
+el('j-label').textContent = `Trabalho de Conclusão de Curso — ${C.ano}`;
 el('j-titulo').textContent = C.titulo;
-el('j-sub').textContent = C.subtitulo;
+el('j-sub').textContent    = C.subtitulo;
+el('j-meta').innerHTML     =
+  `<div>Orientador(a): ${C.orientador}</div><div>${C.autor} — ${C.ano}</div>`;
+
+[C.instituicao, C.curso].forEach(t => {
+  const s = document.createElement('span');
+  s.textContent = t;
+  el('j-tags').appendChild(s);
+});
+
+/* video */
+el('j-video').innerHTML = C.youtubeId
+  ? `<div class="video-wrap">
+       <iframe src="https://www.youtube.com/embed/${C.youtubeId}"
+               allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"
+               allowfullscreen></iframe>
+     </div>`
+  : `<div class="video-ph">
+       <div class="ph-grid"></div>
+       <div class="ph-inner">
+         <div class="ph-play">▶</div>
+         <p>Configure seu vídeo em <strong>C.youtubeId</strong></p>
+         <p class="ph-hint">ex: youtubeId: "dQw4w9WgXcQ"</p>
+       </div>
+     </div>`;
+
+/* sobre */
+C.resumo.forEach(txt => {
+  const p = document.createElement('p');
+  p.textContent = txt;
+  el('j-resumo').appendChild(p);
+});
+
+/* autor */
 el('j-autor-nome').textContent = C.autor;
-el('j-autor-bio').textContent = C.bio;
 el('j-autor-role').textContent = `${C.curso} — ${C.instituicao}`;
-C.resumo.forEach(txt => { const p = document.createElement('p'); p.textContent = txt; el('j-resumo').appendChild(p); });
-el('j-video').innerHTML = C.youtubeId ? `<div class="video-wrap"><iframe src="https://www.youtube.com/embed/${C.youtubeId}"></iframe></div>` : `<p>Configurar C.youtubeId</p>`;
+el('j-autor-bio').textContent  = C.bio;
+
+/* Configuração do link de e-mail */
+if(el('j-email')) {
+  el('j-email').href = `mailto:${C.email}`;
+  el('j-email').textContent = C.email;
+}
+
+/* footer */
+el('j-foot-l').textContent = `© ${C.ano} ${C.autor}`;
+el('j-foot-r').textContent = `${C.instituicao} · ${C.curso}`;
+
+/* ─── active nav on scroll ─── */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('act'));
+      const a = document.querySelector(`.nav-links a[data-s="${e.target.id}"]`);
+      if(a) a.classList.add('act');
+    }
+  });
+},{threshold:.4});
+
+['inicio','sobre','video','banner','script','autor'].forEach(id => {
+  const s = document.getElementById(id);
+  if(s) obs.observe(s);
+});
 </script>
 </body>
 </html>
