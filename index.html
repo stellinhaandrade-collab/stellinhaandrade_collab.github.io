@@ -9,7 +9,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 a{text-decoration:none;}
-img{max-width:100%;display:block; image-rendering: crisp-edges;}
+img{max-width:100%;display:block;}
 
 /* ─── TOKENS ─── */
 :root{
@@ -83,11 +83,7 @@ nav{
 .btn-ol    {background:transparent;color:var(--dk);border:1.5px solid var(--dk);padding:11px 24px;}
 .btn-ol:hover{background:var(--dk);color:var(--bg);}
 
-/* ─── SHARED ─── */
-.inner{max-width:var(--fw);margin:0 auto;}
-section{padding:100px 48px;}
-
-/* ─── SCRIPT CONTAINER (NOVO) ─── */
+/* ─── CONTAINER SCRIPT ─── */
 .script-container {
     overflow-x: auto;
     white-space: nowrap;
@@ -97,35 +93,186 @@ section{padding:100px 48px;}
     padding: 10px;
 }
 .script-container img {
-    height: 300px;
+    height: 350px;
     width: auto;
+    image-rendering: crisp-edges;
 }
 
-/* ─── RESTO DO CSS ORIGINAL ─── */
-#inicio{min-height:100vh;padding:0 48px;display:flex;align-items:center;position:relative;overflow:hidden;}
-.grid-bg{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(160,160,148,.3) 1px,transparent 1px),linear-gradient(90deg,rgba(160,160,148,.3) 1px,transparent 1px);background-size:60px 60px;}
-.quadrado-decorativo{position:absolute;width:60px;height:60px;}
-@media(max-width: 1360px){.quadrado-decorativo{display:none;}}
-.hero-inner{max-width:var(--fw);margin:0 auto;padding:120px 0 80px;position:relative;width:100%;}
-.hero-inner h1{font-weight:700;font-size:clamp(22px, 3.2vw, 34px);line-height:1.15;letter-spacing:-.01em;color:var(--dk);max-width:780px;margin-bottom:26px;text-align:justify;}
-.hero-sub{font-size:18px;font-weight:300;line-height:1.75;color:var(--muted);max-width:520px;margin-bottom:20px;text-align:justify;}
-.hero-meta{position:absolute;right:0;bottom:0;font-size:14px;color:#AAAAAA;line-height:1.6;text-align:right;}
+/* ─── SHARED ─── */
+.inner{max-width:var(--fw);margin:0 auto;}
+section{padding:100px 48px;}
+
+/* ─── HERO ─── */
+#inicio{
+  min-height:100vh;padding:0 48px;
+  display:flex;align-items:center;
+  position:relative;overflow:hidden;
+}
+.grid-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(160,160,148,.3) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(160,160,148,.3) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+
+.quadrado-decorativo {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+}
+@media(max-width: 1360px) {
+  .quadrado-decorativo { display: none; }
+}
+
+.hero-inner{
+  max-width:var(--fw);margin:0 auto;
+  padding:120px 0 80px;position:relative;width:100%;
+}
+.hero-inner h1{
+  font-family:Helvetica, Arial, sans-serif;
+  font-weight:700;
+  font-size:clamp(22px, 3.2vw, 34px);
+  line-height:1.15;letter-spacing:-.01em;
+  color:var(--dk);max-width:780px;margin-bottom:26px;
+  text-align: justify;
+}
+.hero-sub{
+  font-size:18px;font-weight:300;line-height:1.75;
+  color:var(--muted);max-width:520px;margin-bottom:20px;text-align:justify;
+}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:48px;}
+.tags span{
+  background:#E8E8E8;color:#444444;
+  font-size:11px;font-weight:500;
+  padding:5px 12px;letter-spacing:.04em;
+}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
+.hero-meta{
+  position:absolute;right:0;bottom:0;
+  font-family:Helvetica, Arial, sans-serif;
+  font-size:14px;
+  color:#AAAAAA;line-height:1.6;text-align:right;
+}
+
+/* ─── VIDEO ─── */
 #video{background:var(--dk);padding:80px 48px;}
-#video h2{font-weight:300;font-size:clamp(26px,3.5vw,40px);color:var(--bg);margin-bottom:36px;}
+#video h2{
+  font-family:Helvetica, Arial, sans-serif;font-weight:300;
+  font-size:clamp(26px,3.5vw,40px);
+  color:var(--bg);margin-bottom:36px;letter-spacing:.01em;
+  margin-top:14px;
+}
 .video-wrap{position:relative;padding-top:56.25%;}
 .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+.video-ph{
+  aspect-ratio:16/9;background:#2A2A2A;
+  border:1px dashed #555555;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.ph-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(102,102,102,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(102,102,102,.07) 1px,transparent 1px);
+  background-size:48px 48px;
+}
+.ph-inner{position:relative;z-index:1;text-align:center;padding:24px;}
+.ph-play{font-size:44px;color:var(--green);margin-bottom:14px;}
+.ph-inner p{font-family:Helvetica, Arial, sans-serif;font-size:12px;color:var(--gl);}
+.ph-hint{font-size:12px;color:#666666;margin-top:8px;font-family: Helvetica, Arial, sans-serif;}
+
+/* ─── SOBRE ─── */
 #sobre{background:var(--bg-mid);}
 .sobre-grid{display:grid;grid-template-columns:200px 1fr;gap:60px;align-items:start;}
-#sobre h2{font-weight:300;font-size:clamp(26px,3vw,36px);color:var(--dk);margin-bottom:24px;}
+.sobre-rule{width:36px;height:2px;background:var(--green);margin-top:18px;}
+#sobre h2{
+  font-family:Helvetica, Arial, sans-serif;font-weight:300;
+  font-size:clamp(26px,3vw,36px);
+  color:var(--dk);line-height:1.2;margin-bottom:24px;
+}
 #sobre p{font-size:16px;line-height:1.85;color:var(--muted);margin-bottom:16px;text-align:justify;}
-.banner-object{width:100%;height:1200px;border:none;}
+
+/* ─── BANNER CONFIGS RESPONSIVAS ─── */
+.banner-object {
+  width: 100%;
+  height: 1200px;
+  border: none;
+}
+.banner-fullscreen-box {
+  display: block;
+  margin-bottom: 20px;
+}
+.banner-mobile-card {
+  display: none;
+  background: #FFF;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  margin-bottom: 24px;
+}
+.banner-mobile-card p {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+/* ─── AUTOR ─── */
 #autor{background:var(--dk);padding:100px 48px;}
 .autor-grid{display:grid;grid-template-columns:160px 1fr;gap:56px;align-items:center;}
-.avatar{width:140px;height:140px;border-radius:50%;background:var(--gm);border:2px solid var(--green);object-fit:cover;}
-#autor h2{font-weight:300;font-size:clamp(26px,3.5vw,40px);color:var(--bg);margin-bottom:8px;}
-.autor-bio{font-size:18px;font-weight:300;line-height:1.75;color:#B8B8A8;text-align:justify;}
-footer{background:var(--dkr);padding:26px 48px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
-footer span{font-size:10px;color:#666666;letter-spacing:.08em;}
+.avatar{
+  width:140px;height:140px;border-radius:50%;
+  background:var(--gm);border:2px solid var(--green);
+  flex-shrink:0; object-fit: cover;
+}
+#autor h2{
+  font-family:Helvetica, Arial, sans-serif;font-weight:300;
+  font-size:clamp(26px,3.5vw,40px);
+  color:var(--bg);margin-bottom:8px;margin-top:14px;
+}
+.autor-role{
+  font-family:Helvetica, Arial, sans-serif;font-size:12px;
+  color:var(--green);margin-bottom:20px;letter-spacing:.03em;
+}
+.autor-bio{
+  font-size:18px;
+  font-weight:300;
+  line-height:1.75;
+  color:#B8B8A8;
+  text-align:justify;
+}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--dkr);
+  padding:26px 48px;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+}
+footer span{
+  font-family:Helvetica, Arial, sans-serif;
+  font-size:10px;color:#666666;letter-spacing:.08em;
+}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:768px){
+  nav         {padding:0 16px; height:54px;}
+  .brand      {font-size:14px; letter-spacing:0;}
+  .nav-links  {display:flex !important; gap:12px;}
+  .nav-links a{font-size:11px; letter-spacing:0;}
+  #inicio     {padding:0 16px;}
+  section     {padding:60px 16px;}
+  #video      {padding:60px 16px;}
+  #autor      {padding:60px 16px;}
+  footer      {padding:20px 16px;}
+  .sobre-grid, .autor-grid {grid-template-columns:1fr;gap:32px;}
+  .hero-meta  {display:none;}
+  .banner-mobile-card { display: block !important; }
+  .banner-fullscreen-box { display: none !important; }
+  .grid-bg, .quadrado-decorativo { display: none !important; }
+}
 </style>
 </head>
 <body>
@@ -150,34 +297,50 @@ const C = {
 <nav>
   <button class="brand" onclick="go('inicio')">TCC <span>·</span> AU</button>
   <nav class="nav-links">
-    <a href="#inicio" data-s="inicio">Início</a>
-    <a href="#sobre" data-s="sobre">Sobre</a>
-    <a href="#video" data-s="video">Vídeo</a>
-    <a href="#script" data-s="script">Script</a>
-    <a href="#banner" data-s="banner">Banner</a>
-    <a href="#autor" data-s="autor">Autor</a>
+    <a href="#inicio"  data-s="inicio">Início</a>
+    <a href="#sobre"   data-s="sobre">Sobre</a>
+    <a href="#video"   data-s="video">Vídeo</a>
+    <a href="#script"  data-s="script">Script</a>
+    <a href="#banner"  data-s="banner">Banner</a>
+    <a href="#autor"   data-s="autor">Autor</a>
   </nav>
 </nav>
 
 <section id="inicio">
-  <div class="grid-bg"></div>
+  <div class="grid-bg">
+    <div class="quadrado-decorativo q1" style="top: 120px; left: 960px; background:#ffacd1;"></div>
+    <div class="quadrado-decorativo q2" style="top: 180px; left: 1080px; background:#ff7272;"></div>
+    <div class="quadrado-decorativo q3" style="top: 240px; left: 1020px; background:#8ac8fb;"></div>
+    <div class="quadrado-decorativo q4" style="top: 300px; left: 1140px; background:#8ca36a;"></div>
+    <div class="quadrado-decorativo q5" style="top: 360px; left: 960px; background:#f7e07f;"></div>
+    <div class="quadrado-decorativo q6" style="top: 420px; left: 1080px; background:#999999;"></div>
+    <div class="quadrado-decorativo q7" style="top: 240px; left: 1200px; background:#ffacd1;"></div>
+    <div class="quadrado-decorativo q8" style="top: 480px; left: 1020px; background:#8ac8fb;"></div>
+    <div class="quadrado-decorativo q9" style="top: 360px; left: 1260px; background:#ff7272;"></div>
+  </div>
   <div class="hero-inner inner">
     <div class="label" id="j-label"></div>
     <h1 id="j-titulo"></h1>
     <p class="hero-sub" id="j-sub"></p>
-    <button class="btn-dk" onclick="go('video')">Assistir ao tutorial</button>
+    <div class="tags" id="j-tags"></div>
+    <div class="hero-ctas">
+      <button class="btn-dk" onclick="go('video')">Assistir ao tutorial</button>
+      <button class="btn-ol" onclick="go('banner')">↓ Acessar banner</button>
+    </div>
+    <div class="hero-meta" id="j-meta"></div>
   </div>
 </section>
 
 <section id="sobre">
   <div class="inner sobre-grid">
-    <div><div class="label">Sobre</div></div>
-    <div><h2 id="j-resumo-h">O que você vai encontrar</h2><div id="j-resumo"></div></div>
+    <div><div class="label">Sobre o trabalho</div><div class="sobre-rule"></div></div>
+    <div><h2>O que você vai encontrar</h2><div id="j-resumo"></div></div>
   </div>
 </section>
 
 <section id="video">
   <div class="inner">
+    <div class="label-lt">Tutorial em vídeo</div>
     <h2>Assista ao vídeo</h2>
     <div id="j-video"></div>
   </div>
@@ -185,32 +348,42 @@ const C = {
 
 <section id="script">
   <div class="inner">
-    <h2>Fluxo do Algoritmo</h2>
+    <div class="label">Algoritmo</div>
+    <h2>Definição Paramétrica</h2>
     <div class="script-container">
         <img src="IMAGEM TOTAL recortada.PNG" alt="Script Grasshopper">
     </div>
-    <p style="font-size: 12px; color: #888; margin-top: 10px;"><em>Arraste para o lado para visualizar detalhes.</em></p>
+    <p style="font-size: 12px; color: #888; margin-top: 10px;"><em>Arraste para o lado para visualizar os detalhes.</em></p>
   </div>
 </section>
 
 <section id="banner">
   <div class="inner">
+    <div class="label">Banner do trabalho</div>
     <h2>Banner</h2>
-    <a href="A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf" target="_blank" class="btn-dk">Abrir banner em tela cheia</a>
+    <div class="banner-mobile-card"><a href="A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf" target="_blank" class="btn-dk" style="width: 100%;">Abrir Banner</a></div>
+    <div class="banner-fullscreen-box"><a href="A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf" target="_blank" class="btn-dk">Abrir banner em tela cheia</a></div>
+    <object data="A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf" type="application/pdf" class="banner-object"></object>
   </div>
 </section>
 
 <section id="autor">
   <div class="inner">
     <div class="autor-grid">
-      <img src="imagemdeperfil.jpg" alt="Foto" class="avatar">
+      <img src="imagemdeperfil.jpg" alt="Perfil" class="avatar">
       <div>
         <h2 id="j-autor-nome"></h2>
+        <p class="autor-role" id="j-autor-role"></p>
         <p class="autor-bio" id="j-autor-bio"></p>
       </div>
     </div>
   </div>
 </section>
+
+<footer>
+  <span id="j-foot-l"></span>
+  <span id="j-foot-r"></span>
+</footer>
 
 <script>
 function go(id){ document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); }
@@ -219,9 +392,10 @@ el('j-titulo').textContent = C.titulo;
 el('j-sub').textContent = C.subtitulo;
 el('j-autor-nome').textContent = C.autor;
 el('j-autor-bio').textContent = C.bio;
+el('j-autor-role').textContent = `${C.curso} — ${C.instituicao}`;
 C.resumo.forEach(txt => { const p = document.createElement('p'); p.textContent = txt; el('j-resumo').appendChild(p); });
+el('j-video').innerHTML = C.youtubeId ? `<div class="video-wrap"><iframe src="https://www.youtube.com/embed/${C.youtubeId}"></iframe></div>` : `<p>Configurar C.youtubeId</p>`;
 </script>
 </body>
 </html>
-
 
