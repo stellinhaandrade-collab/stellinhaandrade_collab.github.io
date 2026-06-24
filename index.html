@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -22,10 +22,11 @@ img, svg { display: block; max-width: 100%; }
 :root {
   --bg-color: #FDFDFC;      /* Off-white quente e suave */
   --surface: #FFFFFF;       /* Cartões brancos */
-  --text-main: #1C1917;     /* Stone 900 */
+  --text-main: #1C1917;     /* Stone 900 - Contraste acessível (WCAG AAA) */
   --text-muted: #57534E;    /* Stone 500 */
   --primary: #A8D5BA;       /* Sage Green - Acalmante / Arquitetura */
   --primary-dark: #8EBA9F;  /* Sage Green Dark */
+  --accent: #E8B4B8;        /* Soft Pink */
   --border: #E7E5E4;        /* Stone 200 */
   --border-light: #F5F5F4;  /* Stone 100 */
   
@@ -50,17 +51,7 @@ body {
   overflow-x: hidden;
 }
 
-h1 { 
-  font-size: clamp(2rem, 3.5vw, 3.2rem); 
-  font-weight: 700; 
-  letter-spacing: -0.01em; 
-  line-height: 1.15; 
-  color: var(--text-main); 
-  margin-bottom: 24px; 
-  max-width: 780px; 
-  text-transform: uppercase; 
-  text-align: justify; 
-}
+h1 { font-size: clamp(2.25rem, 4vw, 3.5rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; color: var(--text-main); margin-bottom: 24px; max-width: 700px; }
 h2 { font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 600; letter-spacing: -0.01em; color: var(--text-main); margin-bottom: 16px; }
 p  { line-height: 1.8; color: var(--text-muted); }
 
@@ -152,41 +143,38 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--primary-dark); 
 }
 .hero-bg { position: absolute; inset: 0; overflow: hidden; z-index: -1; pointer-events: none; }
 
-.hero-inner { padding-top: 140px; padding-bottom: 80px; position: relative; z-index: 10; width: 100%; display: flex; align-items: center; }
-.text-column { position: relative; z-index: 2; width: 100%; max-width: 680px; }
+/* Novo fundo com Grid e Quadrados */
+.grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  background-position: center top;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
+}
+.quadrado-decorativo {
+  position: absolute;
+  width: 60px; height: 60px;
+  opacity: 0.85;
+  mix-blend-mode: multiply;
+}
 
-.hero-sub { font-size: clamp(1.1rem, 2vw, 1.2rem); color: var(--text-muted); margin-bottom: 32px; max-width: 660px; text-align: justify; }
-.tags { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; }
+.hero-inner { padding-top: 140px; padding-bottom: 80px; position: relative; z-index: 10; width: 100%; }
+.hero-sub { font-size: clamp(1.1rem, 2vw, 1.25rem); color: var(--text-muted); margin-bottom: 32px; max-width: 580px; }
+.tags { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 48px; }
 .tags span {
-  background: var(--surface); color: var(--text-main);
-  border: 1px solid var(--border); border-radius: var(--radius-pill);
-  padding: 8px 16px; font-size: 12px; font-weight: 500; letter-spacing: 0.02em;
+  background: rgba(255, 255, 255, 0.6); color: var(--text-main);
+  border: 1px solid rgba(0,0,0,0.05); border-radius: var(--radius-pill);
+  padding: 6px 14px; font-size: 12px; font-weight: 500; letter-spacing: 0.02em;
+  backdrop-filter: blur(8px);
 }
-.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
 .hero-meta {
-  position: static; font-size: 13px; font-weight: 500; color: var(--text-muted); text-align: left;
+  position: absolute; right: 0; bottom: 0;
+  font-size: 13px; color: var(--text-muted); text-align: right;
 }
-
-/* ─── COMPOSIÇÃO DOS QUADRADOS (ART GRID) ─── */
-.art-container {
-  position: absolute; right: 0; top: 50%;
-  transform: translateY(-50%);
-  width: 300px; height: 480px;
-  z-index: 1; pointer-events: none;
-}
-.sq { position: absolute; width: 60px; height: 60px; }
-.sq-tall { height: 120px; }
-.sq-wide { width: 120px; }
-
-/* Cores Baseadas na Imagem */
-.bg-blue { background: #aed5ff; }
-.bg-salmon { background: #ff9c9c; }
-.bg-olive { background: #a6bd95; }
-.bg-brown { background: #c1a470; }
-.bg-lgrey { background: #d2d2d2; }
-.bg-yellow { background: #fae8a3; }
-.bg-pink { background: #ffc7e2; }
-.bg-fgrey { background: #eeeeee; }
 
 /* ─── TEXTOS DINÂMICOS ─── */
 .text-content p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 16px; }
@@ -227,7 +215,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--primary-dark); 
 .avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; position: relative; z-index: 2; border: 4px solid var(--surface); }
 .avatar-ring {
   position: absolute; inset: -6px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), #E8B4B8);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
   z-index: 1; opacity: 0.5; filter: blur(12px);
 }
 .autor-role { font-size: 15px; font-weight: 500; color: var(--primary-dark); margin-bottom: 20px; letter-spacing: 0.02em; }
@@ -250,14 +238,11 @@ footer span { font-size: 12px; color: var(--text-muted); font-weight: 500; }
   section { padding: 60px 16px; }
   .card { padding: 32px 24px; border-radius: var(--radius-md); }
   .grid-2, .autor-grid { grid-template-columns: 1fr; gap: 32px; }
+  .hero-inner { padding-top: 120px; }
+  .hero-meta { position: relative; right: 0; text-align: left; margin-top: 40px; }
   
-  .hero-inner { padding-top: 120px; align-items: flex-start; }
-  h1 { font-size: 2.2rem; text-align: left; }
-  .hero-sub { text-align: left; }
-  .hero-meta { margin-top: 24px; }
-  
-  /* Ocultar a arte em telemóveis para focar na leitura */
-  .art-container { display: none; }
+  /* Ocultar quadrados em telas menores para não sobrepor o texto */
+  .quadrado-decorativo { display: none; }
   
   .banner-mobile-card { display: block; }
   .banner-fullscreen-box { display: none; }
@@ -310,59 +295,40 @@ const C = {
 </nav>
 
 <section id="inicio" class="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-bg">
+    <div class="grid-bg">
+      <!-- Ancora centralizada para garantir que o grid funcione bem em qualquer tamanho de monitor -->
+      <div style="position: absolute; left: 50%; top: 0; width: 100%; height: 100%;">
+        <div class="quadrado-decorativo" style="top: 120px; margin-left: 300px; background:#ffacd1;"></div>
+        <div class="quadrado-decorativo" style="top: 180px; margin-left: 420px; background:#ff7272;"></div>
+        <div class="quadrado-decorativo" style="top: 240px; margin-left: 360px; background:#8ac8fb;"></div>
+        <div class="quadrado-decorativo" style="top: 300px; margin-left: 480px; background:#8ca36a;"></div>
+        <div class="quadrado-decorativo" style="top: 360px; margin-left: 300px; background:#f7e07f;"></div>
+        <div class="quadrado-decorativo" style="top: 420px; margin-left: 420px; background:#999999;"></div>
+        <div class="quadrado-decorativo" style="top: 240px; margin-left: 540px; background:#ffacd1;"></div>
+        <div class="quadrado-decorativo" style="top: 480px; margin-left: 360px; background:#8ac8fb;"></div>
+        <div class="quadrado-decorativo" style="top: 360px; margin-left: 600px; background:#ff7272;"></div>
+      </div>
+    </div>
+  </div>
   
   <div class="inner hero-inner">
-    <div class="text-column">
-      <div class="label" id="j-label"></div>
-      <h1 id="j-titulo"></h1>
-      <p class="hero-sub" id="j-sub"></p>
-      <div class="tags" id="j-tags"></div>
-      
-      <div class="hero-ctas">
-        <button class="btn-primary" onclick="go('video')">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg>
-          Assistir ao tutorial
-        </button>
-        <button class="btn-secondary" onclick="go('banner')">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
-          Acessar banner
-        </button>
-      </div>
-      <div class="hero-meta" id="j-meta"></div>
+    <div class="label" id="j-label"></div>
+    <h1 id="j-titulo"></h1>
+    <p class="hero-sub" id="j-sub"></p>
+    <div class="tags" id="j-tags"></div>
+    
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="go('video')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+        Assistir ao tutorial
+      </button>
+      <button class="btn-secondary" onclick="go('banner')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+        Acessar banner
+      </button>
     </div>
-
-    <!-- Composição Gráfica (Arte Lateral) -->
-    <div class="art-container">
-      <!-- Bloco Principal (Centro) -->
-      <div class="sq bg-blue" style="top: 0px; left: 60px;"></div>
-      <div class="sq bg-salmon" style="top: 60px; left: 0px;"></div>
-      <div class="sq bg-olive" style="top: 60px; left: 60px;"></div>
-      <div class="sq bg-brown" style="top: 120px; left: 0px;"></div>
-      <div class="sq bg-lgrey" style="top: 120px; left: 60px;"></div>
-      <div class="sq bg-yellow sq-tall" style="top: 120px; left: 120px;"></div>
-      <div class="sq bg-pink sq-wide" style="top: 180px; left: 0px;"></div>
-
-      <!-- Fundo Cinza Claro do Bloco -->
-      <div class="sq bg-fgrey" style="top: -60px; left: 0px; width: 180px; height: 240px; z-index: -1;"></div>
-
-      <!-- Quadrados Flutuantes - Superior Esquerdo -->
-      <div class="sq bg-brown" style="top: -120px; left: 0px;"></div>
-      <div class="sq bg-yellow" style="top: -60px; left: -60px;"></div>
-
-      <!-- Quadrados Flutuantes - Superior Direito -->
-      <div class="sq bg-blue" style="top: -180px; left: 180px;"></div>
-      <div class="sq bg-yellow" style="top: -120px; left: 240px;"></div>
-      <div class="sq bg-pink" style="top: -60px; left: 180px;"></div>
-
-      <!-- Quadrados Flutuantes - Inferior Esquerdo -->
-      <div class="sq bg-pink" style="top: 240px; left: -120px;"></div>
-      <div class="sq bg-salmon" style="top: 300px; left: -60px;"></div>
-      <div class="sq bg-fgrey" style="top: 300px; left: 0px;"></div>
-
-      <!-- Quadrados Flutuantes - Inferior Direito -->
-      <div class="sq bg-blue" style="top: 240px; left: 180px;"></div>
-    </div>
+    <div class="hero-meta" id="j-meta"></div>
   </div>
 </section>
 
@@ -479,7 +445,7 @@ document.title = `TCC — ${C.titulo}`;
 el('j-label').textContent = `Trabalho de Conclusão de Curso — ${C.ano}`;
 el('j-titulo').textContent = C.titulo;
 el('j-sub').textContent    = C.subtitulo;
-el('j-meta').innerHTML     = `Orientador(a): ${C.orientador} &middot; ${C.autor} &mdash; ${C.ano}`;
+el('j-meta').innerHTML     = `<div style="font-weight: 500;">Orientador(a): ${C.orientador}</div><div>${C.autor} — ${C.ano}</div>`;
 
 [C.instituicao, C.curso].forEach(t => {
   const s = document.createElement('span');
