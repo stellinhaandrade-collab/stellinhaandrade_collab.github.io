@@ -4,363 +4,267 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TCC — Carregando…</title>
+
+<!-- Tipografia Premium: Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
 /* ─── RESET ─── */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-a{text-decoration:none;}
-img{max-width:100%;display:block;}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+a { text-decoration: none; color: inherit; }
+img, svg { display: block; max-width: 100%; }
 
-/* ─── TOKENS ─── */
-:root{
-  --bg:     #F8F8F5;
-  --bg-mid: #F0F0EC;
-  --dk:     #222222;
-  --dkr:    #111111;
-  --green:  #666666;
-  --gl:     #CCCCCC;
-  --gm:     #444444;
-  --text:   #1C1C1C;
-  --muted:  #5A5A5A;
-  --dim:    #888;
-  --border: #E0E0D8;
-  --fw:     960px;
+/* ─── DESIGN TOKENS (Soft UI Evolution) ─── */
+:root {
+  --bg-color: #FDFDFC;      /* Off-white quente e suave */
+  --surface: #FFFFFF;       /* Cartões brancos */
+  --text-main: #1C1917;     /* Stone 900 */
+  --text-muted: #57534E;    /* Stone 500 */
+  --primary: #A8D5BA;       /* Sage Green - Acalmante / Arquitetura */
+  --primary-dark: #8EBA9F;  /* Sage Green Dark */
+  --border: #E7E5E4;        /* Stone 200 */
+  --border-light: #F5F5F4;  /* Stone 100 */
+  
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-pill: 9999px;
+  
+  --shadow-soft: 0 12px 40px -12px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 16px 50px -12px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 /* ─── BASE ─── */
-body{
-  font-family: Helvetica, Arial, sans-serif;
-  font-size:16px;line-height:1.6;
-  color:var(--text);background:var(--bg);
-  overflow-x:hidden;
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-main);
+  background: var(--bg-color);
+  overflow-x: hidden;
 }
-.display{font-family:Helvetica, Arial, sans-serif;font-weight:300;}
-.mono   {font-family:Helvetica, Arial, sans-serif;}
 
-/* ─── NAV ─── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  background:rgba(248,248,245,.94);
-  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
-  padding:0 48px;height:58px;
-  display:flex;align-items:center;justify-content:space-between;
+h1 { 
+  font-size: clamp(2rem, 3.5vw, 3.2rem); 
+  font-weight: 700; 
+  letter-spacing: -0.01em; 
+  line-height: 1.15; 
+  color: var(--text-main); 
+  margin-bottom: 24px; 
+  max-width: 780px; 
+  text-transform: uppercase; 
+  text-align: justify; 
 }
-.brand{
-  font-family:Helvetica, Arial, sans-serif;
-  font-size:18px;font-weight:300;letter-spacing:.02em;
-  color:var(--text);cursor:pointer;
-  background:none;border:none;
+h2 { font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 600; letter-spacing: -0.01em; color: var(--text-main); margin-bottom: 16px; }
+p  { line-height: 1.8; color: var(--text-muted); }
+
+/* ─── LAYOUT E UTILITÁRIOS ─── */
+.inner { max-width: 1100px; margin: 0 auto; }
+section { padding: 80px 24px; }
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 48px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border);
+  transition: var(--transition);
 }
-.brand span{color:var(--green);}
-.nav-links{display:flex;gap:28px;}
-.nav-links a{
-  font-size:13px;color:var(--muted);letter-spacing:.03em;
-  transition:color .2s;
+.grid-2 { display: grid; grid-template-columns: 1fr 1.5fr; gap: 48px; }
+.flex { display: flex; } .items-center { align-items: center; } .justify-between { justify-content: space-between; } .justify-center { justify-content: center; } .justify-end { justify-content: flex-end; }
+.gap-2 { gap: 8px; } .gap-4 { gap: 16px; } .w-full { width: 100%; } .mb-4 { margin-bottom: 16px; } .mt-6 { margin-top: 24px; }
+
+/* ─── NAVEGAÇÃO GLASSMORPHISM ─── */
+nav {
+  position: fixed;
+  top: 24px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.7);
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+  padding: 8px 16px 8px 24px;
+  border-radius: var(--radius-pill);
+  display: flex; align-items: center; gap: 32px;
 }
-.nav-links a:hover,.nav-links a.act{color:var(--green);}
+.brand {
+  font-family: var(--font-sans); font-size: 15px; font-weight: 600;
+  color: var(--text-main); cursor: pointer; background: none; border: none; letter-spacing: -0.01em;
+}
+.nav-links { display: flex; gap: 8px; }
+.nav-links a {
+  font-size: 14px; font-weight: 500; color: var(--text-muted);
+  padding: 8px 16px; border-radius: var(--radius-pill);
+  transition: var(--transition);
+}
+.nav-links a:hover, .nav-links a.act {
+  background: var(--border-light); color: var(--text-main);
+}
+
+/* ─── BOTÕES PREMIUM ─── */
+button, .btn { font-family: var(--font-sans); }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--text-main); color: var(--surface);
+  font-weight: 500; font-size: 15px; padding: 14px 28px;
+  border-radius: var(--radius-pill); transition: var(--transition);
+  border: none; cursor: pointer;
+}
+.btn-primary:hover {
+  background: #292524; transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--surface); color: var(--text-main);
+  font-weight: 500; font-size: 15px; padding: 14px 28px;
+  border-radius: var(--radius-pill); transition: var(--transition);
+  border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  cursor: pointer;
+}
+.btn-secondary:hover {
+  background: var(--border-light); border-color: #D6D3D1;
+  transform: translateY(-2px);
+}
+button:focus-visible, a:focus-visible { outline: 2px solid var(--primary-dark); outline-offset: 4px; }
 
 /* ─── LABELS ─── */
-.label,.label-lt{
-  font-family:Helvetica, Arial, sans-serif;
-  font-size:10px;letter-spacing:.15em;text-transform:uppercase;
-  display:flex;align-items:center;gap:8px;
+.label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px;
 }
-.label   {color:var(--green);}
-.label-lt{color:var(--gl);}
-.label::before,.label-lt::before{
-  content:'///';font-size:11px;color:var(--gl);
-}
-
-/* ─── BUTTONS ─── */
-.btn-dk,.btn-ol,.btn-g,.btn-ol-lt{
-  display:inline-block;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size:14px;font-weight:500;letter-spacing:.02em;
-  cursor:pointer;border:none;
-  transition:background .2s,color .2s;
-}
-.btn-dk    {background:var(--dk);color:var(--bg);padding:13px 28px;}
-.btn-dk:hover{background:#333333;}
-.btn-ol    {background:transparent;color:var(--dk);border:1.5px solid var(--dk);padding:11px 24px;}
-.btn-ol:hover{background:var(--dk);color:var(--bg);}
-.btn-g     {background:var(--green);color:var(--bg);padding:13px 28px;}
-.btn-g:hover{background:#555555;}
-.btn-ol-lt {background:transparent;color:var(--bg);border:1.5px solid var(--green);padding:11px 24px;}
-.btn-ol-lt:hover{background:rgba(102,102,102,.15);}
-
-/* ─── SHARED ─── */
-.inner{max-width:var(--fw);margin:0 auto;}
-section{padding:100px 48px;}
-
-/* ─── HERO ─── */
-#inicio{
-  min-height:100vh;padding:0 48px;
-  display:flex;align-items:center;
-  position:relative;overflow:hidden;
-}
-.grid-bg{
-  position:absolute;inset:0;pointer-events:none;
-  background-image:
-    linear-gradient(rgba(160,160,148,.3) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(160,160,148,.3) 1px,transparent 1px);
-  background-size:60px 60px;
+.label::before {
+  content: ''; width: 24px; height: 2px;
+  background: var(--primary); border-radius: 2px;
 }
 
-.quadrado-decorativo {
-  position: absolute;
-  width: 60px;
-  height: 60px;
+/* ─── HERO SECTION ─── */
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center; overflow: hidden;
 }
-@media(max-width: 1360px) {
-  .quadrado-decorativo {
-    display: none;
-  }
+.hero-bg { position: absolute; inset: 0; overflow: hidden; z-index: -1; pointer-events: none; }
+
+.hero-inner { padding-top: 140px; padding-bottom: 80px; position: relative; z-index: 10; width: 100%; display: flex; align-items: center; }
+.text-column { position: relative; z-index: 2; width: 100%; max-width: 680px; }
+
+.hero-sub { font-size: clamp(1.1rem, 2vw, 1.2rem); color: var(--text-muted); margin-bottom: 32px; max-width: 660px; text-align: justify; }
+.tags { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; }
+.tags span {
+  background: var(--surface); color: var(--text-main);
+  border: 1px solid var(--border); border-radius: var(--radius-pill);
+  padding: 8px 16px; font-size: 12px; font-weight: 500; letter-spacing: 0.02em;
+}
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+.hero-meta {
+  position: static; font-size: 13px; font-weight: 500; color: var(--text-muted); text-align: left;
 }
 
-.hero-inner{
-  max-width:var(--fw);margin:0 auto;
-  padding:120px 0 80px;position:relative;width:100%;
+/* ─── COMPOSIÇÃO DOS QUADRADOS (ART GRID) ─── */
+.art-container {
+  position: absolute; right: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 300px; height: 480px;
+  z-index: 1; pointer-events: none;
 }
-.hero-inner h1{
-  font-family:Helvetica, Arial, sans-serif;
-  font-weight:700;
-  font-size:clamp(22px, 3.2vw, 34px);
-  line-height:1.15;letter-spacing:-.01em;
-  color:var(--dk);max-width:780px;margin-bottom:26px;
-  text-align: justify;
-}
-.hero-sub{
-  font-size:18px;font-weight:300;line-height:1.75;
-  color:var(--muted);max-width:520px;margin-bottom:20px;text-align:justify;
-}
-.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:48px;}
-.tags span{
-  background:#E8E8E8;color:#444444;
-  font-size:11px;font-weight:500;
-  padding:5px 12px;letter-spacing:.04em;
-}
-.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
-.hero-meta{
-  position:absolute;right:0;bottom:0;
-  font-family:Helvetica, Arial, sans-serif;
-  font-size:14px;
-  color:#AAAAAA;line-height:1.6;text-align:right;
-}
+.sq { position: absolute; width: 60px; height: 60px; }
+.sq-tall { height: 120px; }
+.sq-wide { width: 120px; }
+
+/* Cores Baseadas na Imagem */
+.bg-blue { background: #aed5ff; }
+.bg-salmon { background: #ff9c9c; }
+.bg-olive { background: #a6bd95; }
+.bg-brown { background: #c1a470; }
+.bg-lgrey { background: #d2d2d2; }
+.bg-yellow { background: #fae8a3; }
+.bg-pink { background: #ffc7e2; }
+.bg-fgrey { background: #eeeeee; }
+
+/* ─── TEXTOS DINÂMICOS ─── */
+.text-content p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 16px; }
+.text-content p:last-child { margin-bottom: 0; }
 
 /* ─── VIDEO ─── */
-#video{background:var(--dk);padding:80px 48px;}
-#video h2{
-  font-family:Helvetica, Arial, sans-serif;font-weight:300;
-  font-size:clamp(26px,3.5vw,40px);
-  color:var(--bg);margin-bottom:36px;letter-spacing:.01em;
-  margin-top:14px;
+.video-wrap, .video-ph {
+  border-radius: var(--radius-md); overflow: hidden;
+  box-shadow: inset 0 0 0 1px var(--border);
 }
-.video-wrap{position:relative;padding-top:56.25%;}
-.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
-.video-ph{
-  aspect-ratio:16/9;background:#2A2A2A;
-  border:1px dashed #555555;
-  display:flex;align-items:center;justify-content:center;
-  position:relative;overflow:hidden;
+.video-wrap { position: relative; padding-top: 56.25%; background: var(--border-light); }
+.video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+.video-ph {
+  background: var(--bg-color); aspect-ratio: 16/9;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
 }
-.ph-grid{
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(102,102,102,.07) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(102,102,102,.07) 1px,transparent 1px);
-  background-size:48px 48px;
-}
-.ph-inner{position:relative;z-index:1;text-align:center;padding:24px;}
-.ph-play{font-size:44px;color:var(--green);margin-bottom:14px;}
-.ph-inner p{font-family:Helvetica, Arial, sans-serif;font-size:12px;color:var(--gl);}
-.ph-hint{font-size:12px;color:#666666;margin-top:8px;font-family: Helvetica, Arial, sans-serif;}
 
-/* ─── SOBRE ─── */
-#sobre{background:var(--bg-mid);}
-.sobre-grid{display:grid;grid-template-columns:200px 1fr;gap:60px;align-items:start;}
-.sobre-rule{width:36px;height:2px;background:var(--green);margin-top:18px;}
-#sobre h2{
-  font-family:Helvetica, Arial, sans-serif;font-weight:300;
-  font-size:clamp(26px,3vw,36px);
-  color:var(--dk);line-height:1.2;margin-bottom:24px;
-}
-#sobre p{font-size:16px;line-height:1.85;color:var(--muted);margin-bottom:16px;text-align:justify;}
-
-/* ─── BANNER CONFIGS RESPONSIVAS ─── */
-.banner-object {
-  width: 100%;
-  height: 1200px;
-  border: none;
-}
-.banner-fullscreen-box {
-  display: block;
-  margin-bottom: 20px;
-}
-.banner-mobile-card {
-  display: none;
-  background: #FFF;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 24px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-  margin-bottom: 24px;
-}
-.banner-mobile-card p {
-  font-size: 15px;
-  color: var(--muted);
-  margin-bottom: 16px;
-}
+/* ─── BANNER ─── */
+.banner-object { width: 100%; height: 800px; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+.banner-mobile-card { display: none; background: var(--bg-color); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 32px; text-align: center; margin-bottom: 24px; }
 
 /* ─── SCRIPT ─── */
-#script{
-  background: var(--dkr);
-  padding: 100px 0;
+.script-desc { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 32px; max-width: 680px; }
+.script-img-wrap {
+  border-radius: var(--radius-md); overflow-x: auto;
+  border: 1px solid var(--border); background: var(--bg-color);
+  padding: 24px; box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);
 }
-#script .inner{
-  padding: 0 48px;
-}
-#script h2{
-  font-family: Helvetica, Arial, sans-serif;
-  font-weight: 300;
-  font-size: clamp(26px, 3.5vw, 40px);
-  color: var(--bg);
-  margin-bottom: 12px;
-  letter-spacing: .01em;
-  margin-top: 14px;
-}
-#script .script-desc{
-  font-size: 15px;
-  font-weight: 300;
-  color: #B8B8A8;
-  margin-bottom: 36px;
-  line-height: 1.7;
-  max-width: 620px;
-}
-.script-img-wrap{
-  width: 100%;
-  overflow-x: auto;
-  border: 1px solid #2E2E2E;
-  background: #1A1A1A;
-  position: relative;
-}
-.script-img-wrap::-webkit-scrollbar{
-  height: 6px;
-}
-.script-img-wrap::-webkit-scrollbar-track{
-  background: #111;
-}
-.script-img-wrap::-webkit-scrollbar-thumb{
-  background: #444;
-  border-radius: 3px;
-}
-.script-img-wrap::-webkit-scrollbar-thumb:hover{
-  background: #666;
-}
-.script-img-wrap img{
-  display: block;
-  width: 100%;
-  min-width: 900px;
-  height: auto;
-  image-rendering: auto;
-}
-.script-hint{
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 14px;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 11px;
-  color: #555;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-.script-hint::before{
-  content: '←→';
-  font-size: 13px;
-  color: #444;
-}
+.script-img-wrap::-webkit-scrollbar { height: 8px; }
+.script-img-wrap::-webkit-scrollbar-track { background: transparent; }
+.script-img-wrap::-webkit-scrollbar-thumb { background: #D6D3D1; border-radius: 4px; }
+.script-img-wrap img { border-radius: var(--radius-sm); min-width: 900px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+.script-hint { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
 
 /* ─── AUTOR ─── */
-#autor{background:var(--dk);padding:100px 48px;}
-.autor-grid{display:grid;grid-template-columns:160px 1fr;gap:56px;align-items:center;}
-.avatar{
-  width:140px;height:140px;border-radius:50%;
-  background:var(--gm);border:2px solid var(--green);
-  flex-shrink:0; object-fit: cover;
+.autor-grid { display: grid; grid-template-columns: auto 1fr; gap: 56px; align-items: center; }
+.avatar-wrap { position: relative; width: 180px; height: 180px; flex-shrink: 0; }
+.avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; position: relative; z-index: 2; border: 4px solid var(--surface); }
+.avatar-ring {
+  position: absolute; inset: -6px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), #E8B4B8);
+  z-index: 1; opacity: 0.5; filter: blur(12px);
 }
-#autor h2{
-  font-family:Helvetica, Arial, sans-serif;font-weight:300;
-  font-size:clamp(26px,3.5vw,40px);
-  color:var(--bg);margin-bottom:8px;margin-top:14px;
-}
-.autor-role{
-  font-family:Helvetica, Arial, sans-serif;font-size:12px;
-  color:var(--green);margin-bottom:20px;letter-spacing:.03em;
-}
-.autor-bio{
-  font-size:18px;
-  font-weight:300;
-  line-height:1.75;
-  color:#B8B8A8;
-  text-align:justify;
-}
+.autor-role { font-size: 15px; font-weight: 500; color: var(--primary-dark); margin-bottom: 20px; letter-spacing: 0.02em; }
 
 /* ─── FOOTER ─── */
-footer{
-  background:var(--dkr);
-  padding:26px 48px;
-  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+footer {
+  padding: 48px 24px; border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  max-width: 1100px; margin: 60px auto 0; flex-wrap: wrap; gap: 16px;
 }
-footer span{
-  font-family:Helvetica, Arial, sans-serif;
-  font-size:10px;color:#666666;letter-spacing:.08em;
-}
+footer span { font-size: 12px; color: var(--text-muted); font-weight: 500; }
 
-/* ─── RESPONSIVE MASTER ─── */
-@media(max-width:768px){
-  nav         {padding:0 16px; height:54px;}
-  .brand      {font-size:14px; letter-spacing:0;}
-  .nav-links  {display:flex !important; gap:12px;}
-  .nav-links a{font-size:11px; letter-spacing:0;}
-
-  #inicio     {padding:0 16px;}
-  section     {padding:60px 16px;}
-  #video      {padding:60px 16px;}
-  #autor      {padding:60px 16px;}
-  footer      {padding:20px 16px;}
-  .sobre-grid ,
-  .autor-grid {grid-template-columns:1fr;gap:32px;}
-  .hero-meta  {display:none;}
-  .cap-card   {grid-template-columns:32px 1fr;gap:14px;}
-  .cap-dur    {display:none;}
-
-  .banner-mobile-card { 
-    display: block !important; 
-  }
-  .banner-fullscreen-box { 
-    display: none !important; 
-  }
-  .banner-object {
-    height: auto !important;
-    aspect-ratio: 1 / 1.414 !important;
-    max-height: 65vh;
-  }
-
-  /* Oculta o grid no mobile */
-  .grid-bg {
-    display: none !important;
-  }
-
-  /* Oculta os quadrados decorativos na versão mobile */
-  .quadrado-decorativo {
-    display: none !important;
-  }
-
-  #script{padding:60px 0;}
-  #script .inner{padding:0 16px;}
-  .script-img-wrap img{min-width:700px;}
+/* ─── MOBILE RESPONSIVE ─── */
+@media(max-width: 768px) {
+  nav { width: calc(100% - 32px); top: 16px; padding: 8px 16px; justify-content: center; }
+  .brand { display: none; }
+  .nav-links { width: 100%; overflow-x: auto; justify-content: space-between; -webkit-overflow-scrolling: touch; padding-bottom: 2px; }
+  .nav-links::-webkit-scrollbar { display: none; }
+  
+  section { padding: 60px 16px; }
+  .card { padding: 32px 24px; border-radius: var(--radius-md); }
+  .grid-2, .autor-grid { grid-template-columns: 1fr; gap: 32px; }
+  
+  .hero-inner { padding-top: 120px; align-items: flex-start; }
+  h1 { font-size: 2.2rem; text-align: left; }
+  .hero-sub { text-align: left; }
+  .hero-meta { margin-top: 24px; }
+  
+  /* Ocultar a arte em telemóveis para focar na leitura */
+  .art-container { display: none; }
+  
+  .banner-mobile-card { display: block; }
+  .banner-fullscreen-box { display: none; }
+  .banner-object { display: none; }
+  
+  .avatar-wrap { width: 140px; height: 140px; margin: 0 auto; }
+  .script-img-wrap img { min-width: 700px; }
 }
 </style>
 </head>
@@ -378,143 +282,182 @@ const C = {
 
   /* ── Vídeo ── cole aqui só o ID do YouTube (parte após ?v=) */
   youtubeId:    null,       /* ex: "dQw4w9WgXcQ" */
-  linkTCC:      "#",
   linkBanner:   "A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf", 
 
   /* ── Contato ── */
   email:        "stella.andradepc@gmail.com",
 
-  /* ── Sobre o tutoriak ── */
+  /* ── Sobre o tutorial ── */
   resumo: [
     "Neste vídeo tutorial, é apresentado o passo a passo para a elaboração de estudos preliminares de Instituições de Longa Permanência para Idosos (ILPIs) por meio do script em Grasshopper desenvolvido neste Trabalho de Conclusão de Curso."
   ],
 
   /* ── Bio ── */
-  bio: "Stella Andrade é graduanda em Arquitetura e Urbanismo pela Universidade Federal de Minas Gerais (UFMG), com interesse em tecnologias digitais voltadas à arquitetura e ao urbanismo. Participou de um projeto de iniciação científica sobre arquitetura e inteligência artificial, desenvolvido no âmbito de uma pesquisa de pós-doutorado da UFMG. Seus interesses acadêmicos incluem design computacional, modelagem paramétrica e o uso de tecnologias digitais nos processos de projeto arquitetônico.",
-
-  /* ── Capítulos do tutorial ── */
-  capitulos: [
-    { n:"01", titulo:"Introdução",          dur:"—:——", desc:"Contextualização do tema e objetivos da pesquisa" },
-    { n:"02", titulo:"Referencial Teórico",  dur:"—:——", desc:"Fundamentação teórica e revisão bibliográfica" },
-    { n:"03", titulo:"Metodologia",          dur:"—:——", desc:"Processo projetual e ferramentas utilizadas" },
-    { n:"04", titulo:"Resultados",           dur:"—:——", desc:"Apresentação das propostas e análises" },
-    { n:"05", titulo:"Conclusão",            dur:"—:——", desc:"Considerações finais e desdobramentos futuros" },
-  ],
+  bio: "Stella Andrade é graduanda em Arquitetura e Urbanismo pela Universidade Federal de Minas Gerais (UFMG), com interesse em tecnologias digitais voltadas à arquitetura e ao urbanismo. Participou de um projeto de iniciação científica sobre arquitetura e inteligência artificial, desenvolvido no âmbito de uma pesquisa de pós-doutorado da UFMG. Seus interesses acadêmicos incluem design computacional, modelagem paramétrica e o uso de tecnologias digitais nos processos de projeto arquitetônico."
 };
 </script>
 
 <nav>
-  <button class="brand" onclick="go('inicio')">TCC <span>·</span> AU</button>
-  <nav class="nav-links">
-    <a href="#inicio"    data-s="inicio">Início</a>
-    <a href="#sobre"     data-s="sobre">Sobre</a>
-    <a href="#video"     data-s="video">Vídeo</a>
-    <a href="#banner"    data-s="banner">Banner</a>
-    <a href="#script"    data-s="script">Script</a>
-    <a href="#autor"     data-s="autor">Autor</a>
-  </nav>
+  <button class="brand" onclick="go('inicio')">TCC <span style="color: var(--primary-dark)">●</span> AU</button>
+  <div class="nav-links">
+    <a href="#inicio" data-s="inicio">Início</a>
+    <a href="#sobre" data-s="sobre">Sobre</a>
+    <a href="#video" data-s="video">Vídeo</a>
+    <a href="#banner" data-s="banner">Banner</a>
+    <a href="#script" data-s="script">Script</a>
+    <a href="#autor" data-s="autor">Autor</a>
+  </div>
 </nav>
 
-<section id="inicio">
-  <div class="grid-bg">
-    <div class="quadrado-decorativo q1" style="top: 120px; left: 960px; background:#ffacd1;"></div>
-    <div class="quadrado-decorativo q2" style="top: 180px; left: 1080px; background:#ff7272;"></div>
-    <div class="quadrado-decorativo q3" style="top: 240px; left: 1020px; background:#8ac8fb;"></div>
-    <div class="quadrado-decorativo q4" style="top: 300px; left: 1140px; background:#8ca36a;"></div>
-    <div class="quadrado-decorativo q5" style="top: 360px; left: 960px; background:#f7e07f;"></div>
-    <div class="quadrado-decorativo q6" style="top: 420px; left: 1080px; background:#999999;"></div>
-    <div class="quadrado-decorativo q7" style="top: 240px; left: 1200px; background:#ffacd1;"></div>
-    <div class="quadrado-decorativo q8" style="top: 480px; left: 1020px; background:#8ac8fb;"></div>
-    <div class="quadrado-decorativo q9" style="top: 360px; left: 1260px; background:#ff7272;"></div>
-  </div>
+<section id="inicio" class="hero">
+  <div class="hero-bg"></div>
   
-  <div class="hero-inner inner">
-    <div class="label" id="j-label"></div>
-    <h1 id="j-titulo"></h1>
-    <p class="hero-sub" id="j-sub"></p>
-    <div class="tags"   id="j-tags"></div>
-    <div class="hero-ctas">
-      <button class="btn-dk" onclick="go('video')">
-        <svg viewBox="0 0 24 24" style="width:14px; height:14px; fill:currentColor; margin-right:8px; display:inline-block; vertical-align:-2px;"><path d="M8 5v14l11-7z"/></svg>Assistir ao tutorial
-      </button>
-      <button class="btn-ol" onclick="go('banner')">↓ Acessar banner</button>
+  <div class="inner hero-inner">
+    <div class="text-column">
+      <div class="label" id="j-label"></div>
+      <h1 id="j-titulo"></h1>
+      <p class="hero-sub" id="j-sub"></p>
+      <div class="tags" id="j-tags"></div>
+      
+      <div class="hero-ctas">
+        <button class="btn-primary" onclick="go('video')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+          Assistir ao tutorial
+        </button>
+        <button class="btn-secondary" onclick="go('banner')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+          Acessar banner
+        </button>
+      </div>
+      <div class="hero-meta" id="j-meta"></div>
     </div>
-    <div class="hero-meta" id="j-meta"></div>
+
+    <!-- Composição Gráfica (Arte Lateral) -->
+    <div class="art-container">
+      <!-- Bloco Principal (Centro) -->
+      <div class="sq bg-blue" style="top: 0px; left: 60px;"></div>
+      <div class="sq bg-salmon" style="top: 60px; left: 0px;"></div>
+      <div class="sq bg-olive" style="top: 60px; left: 60px;"></div>
+      <div class="sq bg-brown" style="top: 120px; left: 0px;"></div>
+      <div class="sq bg-lgrey" style="top: 120px; left: 60px;"></div>
+      <div class="sq bg-yellow sq-tall" style="top: 120px; left: 120px;"></div>
+      <div class="sq bg-pink sq-wide" style="top: 180px; left: 0px;"></div>
+
+      <!-- Fundo Cinza Claro do Bloco -->
+      <div class="sq bg-fgrey" style="top: -60px; left: 0px; width: 180px; height: 240px; z-index: -1;"></div>
+
+      <!-- Quadrados Flutuantes - Superior Esquerdo -->
+      <div class="sq bg-brown" style="top: -120px; left: 0px;"></div>
+      <div class="sq bg-yellow" style="top: -60px; left: -60px;"></div>
+
+      <!-- Quadrados Flutuantes - Superior Direito -->
+      <div class="sq bg-blue" style="top: -180px; left: 180px;"></div>
+      <div class="sq bg-yellow" style="top: -120px; left: 240px;"></div>
+      <div class="sq bg-pink" style="top: -60px; left: 180px;"></div>
+
+      <!-- Quadrados Flutuantes - Inferior Esquerdo -->
+      <div class="sq bg-pink" style="top: 240px; left: -120px;"></div>
+      <div class="sq bg-salmon" style="top: 300px; left: -60px;"></div>
+      <div class="sq bg-fgrey" style="top: 300px; left: 0px;"></div>
+
+      <!-- Quadrados Flutuantes - Inferior Direito -->
+      <div class="sq bg-blue" style="top: 240px; left: 180px;"></div>
+    </div>
   </div>
 </section>
 
-<section id="sobre">
-  <div class="inner sobre-grid">
+<section id="sobre" class="inner">
+  <div class="card grid-2">
     <div>
-      <div class="label">Sobre o trabalho</div>
-      <div class="sobre-rule"></div>
-    </div>
-    <div>
+      <div class="label">Sobre o projeto</div>
       <h2>O que você vai encontrar neste tutorial</h2>
-      <div id="j-resumo"></div>
     </div>
+    <div class="text-content" id="j-resumo"></div>
   </div>
 </section>
 
-<section id="video">
-  <div class="inner">
-    <div class="label-lt">Tutorial em vídeo</div>
-    <h2>Assista ao vídeo</h2>
+<section id="video" class="inner">
+  <div class="card">
+    <div class="mb-4">
+      <div class="label">Tutorial em vídeo</div>
+      <h2>Assista ao passo a passo</h2>
+    </div>
     <div id="j-video"></div>
   </div>
 </section>
 
-<section id="banner">
-  <div class="inner">
-    <div class="label">Banner do trabalho</div>
-    <h2>Banner</h2>
-
-    <div class="banner-mobile-card">
-      <p>Para uma melhor experiência de leitura e visualização dos detalhes técnicos, recomendamos abrir o banner em tela cheia.</p>
-      <a href="A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf" target="_blank" class="btn-dk" style="width: 100%; text-align: center;">
-        🗂️ Abrir Banner em Tela Cheia
-      </a>
+<section id="banner" class="inner">
+  <div class="card">
+    <div class="flex justify-between items-center mb-4 flex-wrap gap-4">
+      <div>
+        <div class="label">Síntese do Trabalho</div>
+        <h2 style="margin:0;">Banner do projeto</h2>
+      </div>
+      <div class="banner-fullscreen-box">
+        <a href="A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf" target="_blank" class="btn-secondary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+          Abrir em tela cheia
+        </a>
+      </div>
     </div>
 
-    <div class="banner-fullscreen-box">
-      <a href="A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf" target="_blank" class="btn-dk">
-        Abrir banner em tela cheia
+    <div class="banner-mobile-card">
+      <p style="margin-bottom: 24px;">Para uma melhor experiência de leitura e visualização dos detalhes técnicos, recomendamos abrir o banner em tela cheia.</p>
+      <a href="A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf" target="_blank" class="btn-primary w-full justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+        Visualizar Arquivo PDF
       </a>
     </div>
 
     <object data="A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf" type="application/pdf" class="banner-object">
-      <p>Seu navegador não conseguiu exibir o PDF. <a href="A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf" target="_blank">Clique aqui para abrir o banner.</a></p>
+      <div style="padding: 48px; text-align: center; background: var(--border-light); border-radius: var(--radius-sm);">
+        <p style="margin-bottom: 16px;">Seu navegador não conseguiu exibir o PDF incorporado.</p>
+        <a href="A1%20STELLA%20FINAL%20CERTO%20NOVO.pdf" target="_blank" class="btn-primary">Acessar PDF diretamente</a>
+      </div>
     </object>
-
   </div>
 </section>
 
-<!-- ─── SCRIPT ─── -->
-<section id="script">
-  <div class="inner">
-    <div class="label-lt">Definição paramétrica</div>
-    <h2>Script em Grasshopper</h2>
-    <p class="script-desc">Visão geral do script paramétrico desenvolvido no Grasshopper para geração e otimização de plantas de ILPIs — da geração do terreno à configuração final das adjacências.</p>
+<section id="script" class="inner">
+  <div class="card">
+    <div class="mb-4">
+      <div class="label">Definição paramétrica</div>
+      <h2>Script em Grasshopper</h2>
+      <p class="script-desc">Visão geral do script paramétrico desenvolvido no Grasshopper para geração e otimização de plantas de ILPIs — da geração do terreno à configuração final das adjacências.</p>
+    </div>
+    
     <div class="script-img-wrap">
       <img src="IMAGEM_TOTAL_recortada.PNG" alt="Visão geral do script paramétrico no Grasshopper">
     </div>
-    <p class="script-hint">Role horizontalmente para explorar o script completo</p>
+    
+    <p class="script-hint">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      Role horizontalmente para explorar
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+    </p>
   </div>
 </section>
 
-<section id="autor">
-  <div class="inner">
-    <div class="autor-grid">
+<section id="autor" class="inner">
+  <div class="card autor-grid">
+    <div class="avatar-wrap">
+      <div class="avatar-ring"></div>
       <img src="imagemdeperfil.jpg" alt="Foto de perfil de Stella" class="avatar">
-      <div>
-        <div class="label-lt">Sobre o autor</div>
-        <h2 id="j-autor-nome"></h2>
-        <p class="autor-role" id="j-autor-role"></p>
-        <p class="autor-bio"  id="j-autor-bio"></p>
-        <p style="color:#B8B8A8; font-size:18px; font-weight:300; line-height:1.75; margin-top:20px;">
-          Caso queira contactar o autor, envie um e-mail para: 
-          <a id="j-email" style="color:var(--green); font-weight:500; text-decoration:underline;"></a>
-        </p>
+    </div>
+    <div>
+      <div class="label">Sobre a autora</div>
+      <h2 id="j-autor-nome" style="margin-bottom: 4px;"></h2>
+      <p class="autor-role" id="j-autor-role"></p>
+      <div class="text-content" id="j-autor-bio"></div>
+      
+      <div class="mt-6 flex items-center gap-4" style="padding: 16px; background: var(--border-light); border-radius: var(--radius-sm); border: 1px solid var(--border);">
+        <div style="padding: 12px; background: var(--surface); border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary-dark)"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </div>
+        <div>
+          <p style="font-size: 13px; font-weight: 600; color: var(--text-main); margin-bottom: 2px;">Entrar em contato</p>
+          <a id="j-email" style="font-size: 14px; color: var(--text-muted); transition: color 0.2s;"></a>
+        </div>
       </div>
     </div>
   </div>
@@ -526,20 +469,17 @@ const C = {
 </footer>
 
 <script>
-/* ─── helpers ─── */
-function go(id){
-  document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
-}
-function el(id){return document.getElementById(id);}
+/* ─── HELPERS ─── */
+function go(id){ document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); }
+function el(id){ return document.getElementById(id); }
 
-/* ─── populate ─── */
+/* ─── POPULATE DADOS DO OBJETO ─── */
 document.title = `TCC — ${C.titulo}`;
 
 el('j-label').textContent = `Trabalho de Conclusão de Curso — ${C.ano}`;
 el('j-titulo').textContent = C.titulo;
 el('j-sub').textContent    = C.subtitulo;
-el('j-meta').innerHTML     =
-  `<div>Orientador(a): ${C.orientador}</div><div>${C.autor} — ${C.ano}</div>`;
+el('j-meta').innerHTML     = `Orientador(a): ${C.orientador} &middot; ${C.autor} &mdash; ${C.ano}`;
 
 [C.instituicao, C.curso].forEach(t => {
   const s = document.createElement('span');
@@ -547,45 +487,44 @@ el('j-meta').innerHTML     =
   el('j-tags').appendChild(s);
 });
 
-/* video */
+/* Construção da área de vídeo */
 el('j-video').innerHTML = C.youtubeId
   ? `<div class="video-wrap">
        <iframe src="https://www.youtube.com/embed/${C.youtubeId}"
                allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"
                allowfullscreen></iframe>
      </div>`
-  : `<div class="video-ph">
-       <div class="ph-grid"></div>
-       <div class="ph-inner">
-         <div class="ph-play">▶</div>
-         <p>Configure seu vídeo em <strong>C.youtubeId</strong></p>
-         <p class="ph-hint">ex: youtubeId: "dQw4w9WgXcQ"</p>
-       </div>
+  : `<div class="video-ph" style="padding: 40px; text-align: center;">
+       <svg style="width: 48px; height: 48px; color: var(--primary-dark); margin-bottom: 16px; opacity: 0.8;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="4"/><path d="m10 8 6 4-6 4Z"/></svg>
+       <p style="color: var(--text-main); font-weight: 600; font-size: 1.1rem; margin-bottom: 4px;">Nenhum vídeo configurado</p>
+       <p style="font-size: 14px;">Adicione seu <strong>C.youtubeId</strong> no código.</p>
      </div>`;
 
-/* sobre */
+/* Seção Sobre */
 C.resumo.forEach(txt => {
   const p = document.createElement('p');
   p.textContent = txt;
   el('j-resumo').appendChild(p);
 });
 
-/* autor */
+/* Seção Autor */
 el('j-autor-nome').textContent = C.autor;
 el('j-autor-role').textContent = `${C.curso} — ${C.instituicao}`;
-el('j-autor-bio').textContent  = C.bio;
+el('j-autor-bio').innerHTML    = `<p>${C.bio}</p>`;
 
-/* Configuração do link de e-mail */
 if(el('j-email')) {
   el('j-email').href = `mailto:${C.email}`;
   el('j-email').textContent = C.email;
+  // Efeito de hover no JS puro caso precise garantir
+  el('j-email').addEventListener('mouseenter', function() { this.style.color = 'var(--primary-dark)'; });
+  el('j-email').addEventListener('mouseleave', function() { this.style.color = 'var(--text-muted)'; });
 }
 
-/* footer */
+/* Footer */
 el('j-foot-l').textContent = `© ${C.ano} ${C.autor}`;
 el('j-foot-r').textContent = `${C.instituicao} · ${C.curso}`;
 
-/* ─── active nav on scroll ─── */
+/* ─── ACTIVE NAV ON SCROLL ─── */
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if(e.isIntersecting){
@@ -594,7 +533,7 @@ const obs = new IntersectionObserver(entries => {
       if(a) a.classList.add('act');
     }
   });
-},{threshold:.4});
+},{threshold: 0.3});
 
 ['inicio','sobre','video','banner','script','autor'].forEach(id => {
   const s = document.getElementById(id);
@@ -603,4 +542,3 @@ const obs = new IntersectionObserver(entries => {
 </script>
 </body>
 </html>
-
